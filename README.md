@@ -1,1 +1,3 @@
-# thresh111-JueJin_id9527
+# 码上掘金项目
+
+使用nuxt3
