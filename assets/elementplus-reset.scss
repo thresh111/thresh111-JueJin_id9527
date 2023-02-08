@@ -1,0 +1,12 @@
+.main-nav{
+    .el-menu--horizontal{
+        border-bottom: none;
+        .el-menu-item.is-active{
+            border-bottom: none;
+        }
+        .el-menu-item{
+            line-height: 60px;
+            border-bottom: none;
+        }
+    }
+}

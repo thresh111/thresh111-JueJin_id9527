@@ -1,9 +1,14 @@
 <template>
-  <div>index</div>
+  <div class="contain">
+    <AppHeader />
+  </div>
 </template>
 
-<script setup lang='ts'>
-</script>
+<script setup lang="ts"></script>
 
-<style>
+<style lang="scss" scoped>
+.contain {
+  background-color: #f4f5f5;
+  height: 110vh;
+}
 </style>
