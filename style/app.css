@@ -16,11 +16,18 @@
     flex-grow: 1;
     flex-shrink: 1;
     min-height: 20px;
+    min-width: 300px;
+}
+
+.el-avatar {
+    margin-top: 4px;
+    height: 3.333rem;
+    width: 3.333rem;
 }
 
 .author-name {
     /* display: flex; */
-    font-size: 1.333rem;
+    font-size: 1.3rem;
     font-weight: 500;
     color: #515767;
     line-height: 2rem;
@@ -28,7 +35,7 @@
 
 .author-png {
     display: flex;
-    margin-right: 1rem;
+    margin-right: 0.1rem;
     width: 3.333rem;
     height: 3.333rem;
     border-radius: 50%;
@@ -39,8 +46,15 @@
     height: 16px;
 }
 
-.time-readsum {
-    /* display:flex; */
+.author-identity .time-readsum {
+    margin-top: 4px;
+    font-size: 1.167rem;
+    color: #515767;
+    font-weight: 400;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .subscribe {
@@ -48,10 +62,89 @@
     padding: 0 1rem;
     height: 34px;
     font-size: 14px;
-    color: #1e80ff;
+    /* color: #969798;
     background: rgba(30, 128, 255, .05);
-    border: 1px solid rgba(30, 128, 255, .3);
+    border: 1px solid rgba(30, 128, 255, .3); */
     border-radius: 4px;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.el-main {
+    position: relative;
+    padding-top: 2.667rem;
+    z-index: 1;
+    border: 1px solid hsla(0, 0, 59.2, 0.1);
+    border-radius: 1px;
+    min-width: 700px;
+    height: 100%;
+    max-width: 960px;
+    background-color: #f4f5f5;
+    padding-left: 2.67rem;
+    padding-right: 2.67rem;
+    margin-left: 270px;
+    margin-bottom: 187px;
+}
+
+.el-aside {
+    /* width: 400px; */
+}
+
+.aside-author {
+    position: relative;
+    top: 0px;
+    /* left: 50px; */
+    margin-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 25rem;
+}
+
+.author-info {
+    /* display: flex; */
+    border-radius: 5px;
+    padding: 1.667rem;
+    width: 300px;
+    background-color: #f4f5f5;
+    border: 1px solid hsla(0, 0, 59.2, 0.1);
+}
+
+.article-directory {
+    border-radius: 4px;
+    padding: 1.667rem;
+    width: 300px;
+    text-align: center;
+    background-color: #f4f5f5;
+    border: 1px solid hsla(0, 0, 59.2, 0.1);
+}
+
+.button {
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 27px;
+}
+
+.my_button {
+    width: 122px;
+    height: 36px;
+    /* font-size: 14px;
+    border-radius: 4px; */
+}
+
+.el-container {
+    margin-top: 1.767rem;
+    /* color: #0000; */
+    position: relative;
+    /* position: absolute; */
+    /* flex-wrap: wrap; */
+    /* text-align: center; */
+    /* margin: 0px center; */
+    padding: 0 0 8rem;
+}
+
+.directory {
+    text-align: left;
 }
