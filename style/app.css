@@ -83,7 +83,7 @@
     background-color: #f4f5f5;
     padding-left: 2.67rem;
     padding-right: 2.67rem;
-    margin-left: 270px;
+    /* margin-left: 270px; */
     margin-bottom: 187px;
 }
 
@@ -147,4 +147,9 @@
 
 .directory {
     text-align: left;
+}
+
+.main {
+    position: left;
+    margin-left: 250px;
 }
