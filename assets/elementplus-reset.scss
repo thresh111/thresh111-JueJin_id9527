@@ -1,12 +1,35 @@
-.main-nav{
-    .el-menu--horizontal{
-        border-bottom: none;
-        .el-menu-item.is-active{
-            border-bottom: none;
-        }
-        .el-menu-item{
-            line-height: 60px;
-            border-bottom: none;
-        }
+.main-nav {
+  .el-menu--horizontal {
+    border-bottom: none;
+    .el-menu-item.is-active {
+      border-bottom: none;
     }
+    .el-menu-item {
+      line-height: 60px;
+      border-bottom: none;
+      color: #86909c;
+      padding: 0 1rem;
+      font-size: 1.167rem;
+      margin: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+  .el-button-group {
+    display: flex;
+    height: 3rem;
+    width: 115px;
+    &.el-button {
+      border-radius: 2px;
+      padding: 0 1rem;
+    }
+    .el-button {
+      background-color: #1e80ff;
+      height: 100%;
+      font-size: 1.167rem;
+    }
+  }
 }
