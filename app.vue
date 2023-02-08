@@ -1,6 +1,8 @@
 <template>
+  <div >
     <el-container >
-      <el-main>
+      <el-space>
+      <el-main >
         <div class="main-article">
           <h1 class="article-title" >
             光明正大
@@ -38,22 +40,53 @@
                     关注
                 </el-button> -->
               <!-- </div> -->
-
           </div>
         </div>
       </el-main>
-      <el-aside width="100px">
-        1
+      <el-aside class="aside-author" width="300px" >
+      <el-space direction="vertical">
+        <div class="author-info ">
+            <span>作者姓名</span>
+        </div>
+        <div class="article-directory">
+            <span>目录</span>
+        </div>
+      </el-space>
+        
       </el-aside>
-      
+    </el-space>
     </el-container>
+  </div>
 </template>
 <style>
-  .main-article{
-    border-radius: 4px 4px 1 0
+  .el-main{
+    border: 1px solid hsla(0, 0, 59.2, 0.1);
+    border-radius: 2px;
+    min-width: 700px;
+    height: 100%;
+    max-width: 960px;
+    background-color: #f4f5f5;
+    margin-left: 100px;
   }
-  .el-container{
-    background-color: antiquewhite;
+  .aside-author{
+    position: relative;
+    top: 0;
+    /* left: 50px; */
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  .author-info{
+    border-radius: 4px;
+    padding: 1.667rem;
+    background-color: #f4f5f5;
+    border: 1px solid hsla(0, 0, 59.2, 0.1);
+  }
+  .article-directory{
+    border-radius: 4px;
+    padding: 1.667rem;
+    background-color: #f4f5f5;
+    border: 1px solid hsla(0, 0, 59.2, 0.1);
+    
   }
 </style>
 
