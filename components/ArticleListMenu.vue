@@ -1,5 +1,5 @@
 <template>
-  <div class="homeBody">
+  <main class="homeBody">
     <div class="articleBody">
       <header class="listHeader">
         <client-only>
@@ -11,7 +11,7 @@
             @select="articleListSelect"
           >
             <div
-              v-for="item in articleListChange"
+              v-for="(item, i) in articleListChange"
               :key="item.sort"
               index="{item.sort}"
               style="padding: 0"
@@ -19,7 +19,7 @@
               <el-menu-item>
                 {{ item.title }}
               </el-menu-item>
-              <a class="rightLine" />
+              <a v-if="i !== 2" class="rightLine" />
             </div>
           </el-menu>
         </client-only>
@@ -28,7 +28,7 @@
         </el-main>
       </header>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts" setup>
@@ -41,13 +41,15 @@ const { data: articleListChange } = await useFetch('/api/articleListChange')
 
 <style lang="less" scoped>
 .homeBody {
-  // border-radius: 2px;
+  position: relative;
+  max-width: 960px;
+  margin: 66px auto;
   height: 100%;
-  // max-width: 960px;
   background-color: #f4f5f5;
 }
 
 .articleBody {
+  margin: auto;
   width: 700px;
 }
 
@@ -59,7 +61,7 @@ const { data: articleListChange } = await useFetch('/api/articleListChange')
   color: #909090;
   line-height: normal;
   align-content: center;
-  padding: 0.5rem 1rem;
+  padding: 1.5rem 1.6rem;
   transition: none;
   height: 30px;
 }
@@ -80,8 +82,8 @@ const { data: articleListChange } = await useFetch('/api/articleListChange')
   height: 16px;
   position: absolute;
   border-right: solid 1px hsla(0, 0%, 59.2%, 0.2);
-  margin-top: -22px;
-  margin-left: 60px;
+  margin-top: -25px;
+  margin-left: 65px;
 }
 
 .el-main {

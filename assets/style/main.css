@@ -1,4 +1,6 @@
  /* main.css 全局CSS */
- body {
-   background-color: #f4f5f5;
- }
+ .contain {
+  background-color: #f4f5f5;
+  height: 110vh;
+}
+
