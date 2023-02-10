@@ -31,6 +31,7 @@
     font-weight: 500;
     color: #515767;
     line-height: 2rem;
+    overflow: hidden;
 }
 
 .author-png {
@@ -46,9 +47,20 @@
     height: 16px;
 }
 
-.author-identity .time-readsum {
+.author-identity {
     margin-top: 4px;
-    font-size: 1.167rem;
+    font-size: 1rem;
+    color: #515767;
+    font-weight: 400;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-readsum {
+    margin-top: 4px;
+    font-size: 1rem;
     color: #515767;
     font-weight: 400;
     line-height: 22px;
@@ -62,9 +74,6 @@
     padding: 0 1rem;
     height: 34px;
     font-size: 14px;
-    /* color: #969798;
-    background: rgba(30, 128, 255, .05);
-    border: 1px solid rgba(30, 128, 255, .3); */
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -89,30 +98,38 @@
 
 .el-aside {
     /* width: 400px; */
+    overflow: hidden;
 }
 
 .aside-author {
-    position: relative;
+    position: absolute;
     top: 0px;
     /* left: 50px; */
     margin-bottom: 0px;
     margin-left: 20px;
     margin-right: 10px;
     width: 25rem;
+    /* padding: 1.667rem; */
+    overflow: hidden;
+}
+
+.aside-size {
+    padding: 1.4rem;
 }
 
 .author-info {
-    /* display: flex; */
+    display: block;
     border-radius: 5px;
-    padding: 1.667rem;
+    /* padding: 1.5rem; */
     width: 300px;
     background-color: #f4f5f5;
     border: 1px solid hsla(0, 0, 59.2, 0.1);
+    overflow: hidden;
 }
 
 .article-directory {
     border-radius: 4px;
-    padding: 1.667rem;
+    /* padding: 1.5rem; */
     width: 300px;
     text-align: center;
     background-color: #f4f5f5;
@@ -123,25 +140,23 @@
     display: flex;
     position: relative;
     margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 27px;
+    /* margin-left: 10px; */
+    margin-right: 40px;
+    vertical-align: middle;
 }
 
 .my_button {
-    width: 122px;
+    width: 100px;
     height: 36px;
+    vertical-align: middle;
     /* font-size: 14px;
     border-radius: 4px; */
+    vertical-align: middle;
 }
 
 .el-container {
     margin-top: 1.767rem;
-    /* color: #0000; */
     position: relative;
-    /* position: absolute; */
-    /* flex-wrap: wrap; */
-    /* text-align: center; */
-    /* margin: 0px center; */
     padding: 0 0 8rem;
 }
 
@@ -150,6 +165,20 @@
 }
 
 .main {
-    position: left;
-    margin-left: 250px;
+    position: relative;
+    margin-left: 251px;
+}
+
+.content {
+    font-size: 1.1rem;
+    color: #252933;
+    font-weight: 400;
+    margin-left: 1rem;
+    /* margin-top: 1rem; */
+    /* margin-bottom: 1rem; */
+    vertical-align: top;
+}
+
+.icon {
+    vertical-align: middle;
 }

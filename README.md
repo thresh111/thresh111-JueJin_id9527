@@ -25,4 +25,8 @@ Start the development server on http://localhost:3000
 npm run dev
 ```
 1. 解决基本布局问题，文章、作者信息和文章目录的布局
+2. 添加了关注按钮和私信按钮
+3. 目前未解决问题为：md文件格式读取
+
+
 

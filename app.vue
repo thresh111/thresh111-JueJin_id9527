@@ -30,13 +30,17 @@
               </div>
           </div>
           <div class="author-article">
-                <span>123456</span>
-                </div>
+            <VueShowdown
+              markdown="## markdown text {{ message }}"
+              :vue-template="true"
+              :vue-template-data="{ message }"
+            />
+          </div>
         </div>
       </el-main>
-      <el-aside class="aside-author" >
-      <el-space direction="vertical">
-        <div class="author-info ">
+      <el-aside width="auto" class="aside-author" >
+      <el-space direction="vertical" width="auto">
+        <div class="author-info aside-size">
           <div class="author-info-block">
             <div class="author-png"  >
                   <a href="https://www.baidu.com" target="_blank"  class="avatar-link" >
@@ -54,7 +58,7 @@
                     </span>
                 </a>
                 <div class="author-identity">
-                    <span>前端工程师</span>
+                    <span class="author-identity">前端工程师</span>
                 </div>
             </div>
           </div>
@@ -76,15 +80,17 @@
               </div>
             </div>
           <el-divider></el-divider>
-            <div>
-                <span>获得点赞数</span>
+            <div class="zan icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" class="iocn like"><g  fill="none" fill-rule="evenodd" transform="translate(0 .57)"><ellipse  cx="12.5" cy="12.57" fill="#E1EFFF" rx="12.5" ry="12.57"></ellipse><path  fill="#7BB9FF" d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z"></path></g></svg>
+              <span class="content like-word">获得点赞</span>
             </div>
-            <div>
-              <span>文章被阅读</span>
+            <div class="kan icon">
+              <svg  width="25" height="25" viewBox="0 0 25 25" class="view icon"><g  fill="none" fill-rule="evenodd"><circle  cx="12.5" cy="12.5" r="12.5" fill="#E1EFFF"></circle><path  fill="#7BB9FF" d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z"></path></g></svg>
+              <span class="content">文章被阅读</span>
             </div>
           
         </div>
-        <div class="article-directory ">
+        <div class="article-directory aside-size">
             <span>目录</span>
             <el-divider></el-divider>
             <div class="directory">
@@ -94,7 +100,6 @@
             </div>
         </div>
       </el-space>
-        
       </el-aside>
     </el-space>
     </el-container>
@@ -104,18 +109,66 @@
 </style>
 
 <script>
+import hljs from "highlight.js";
+import "highlight.js/styles/default.css";
 import '@/style/app.css'
+import { VueShowdown } from 'vue-showdown';
+import { setupDotenv } from 'c12';
+import {View,} from '@element-plus/icons-vue'
+import { defineComponent, ref } from 'vue';
+// function convert(){
+//     var text = document.getElementById("oriContent").value;
+//     var converter = new showdown.Converter();
+//     var html = converter.makeHtml(text);
+//     document.getElementById("result").innerHTML = html;
+// }
 export default {
+        // directives: {
+        //   highlight: {
+        //     update(el) {
+        //       let blocks = el.querySelectorAll("pre code");
+        //       blocks.forEach((block) => {
+        //         hljs.highlightBlock(block);
+        //       });
+        //     },
+        //   },
+        // },
+        setup() {
+          const message = ref("hello, vue template in markdown\n 1234")
+          return { message };
+        },
+        components:{
+          View,
+          VueShowdown,
+        },
         name: "zan",
+        markdown_content: "12345",
+        // message,
         data () {
             return{
                 liked:false,
                 content:'关注',
                 bg_color:"#1D7DFA",
                 ft_color:"#fff",
+                // message,
             }
         },
         methods:{
+            // setup() {
+            //   const message = ref('hello, vue template in markdown!43221')
+            //   return { message };
+            // },
+            // getDocment(val) {
+            //     // 请求接口
+            //     lookDoc({ id: val }).then((res) => {
+            //       this.content = res.data.info[0].content;
+            //       this.content = "## 转换markdown语法为html语法"
+            //     });
+            //     },
+            //     // 转换markdown语法为html语法
+            //     compileMarkDown(val) {
+            //     return converter.makeHtml(val);
+            // },
             favor (e) {
                 this.liked=!this.liked;
                 if(this.liked){
@@ -145,18 +198,10 @@ export default {
                     this.ft_color="#fff";
                 }
             }
-        }
+        },
+      
     }
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-  Share, 
-  Upload
-} from '@element-plus/icons'
+    
 </script>
 
 
