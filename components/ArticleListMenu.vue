@@ -27,6 +27,10 @@
           <ArticleList />
         </el-main>
       </header>
+      <div class="rightBox">
+        <AppAdvertise />
+        <AppAuthor />
+      </div>
     </div>
   </main>
 </template>
@@ -86,6 +90,14 @@ const { data: articleListChange } = await useFetch('/api/articleListChange')
   margin-left: 65px;
 }
 
+.rightBox {
+    position: absolute;
+    width: 20rem;
+    height: 600px;
+    top: 0;
+    right: -125px;
+    z-index: 1;
+}
 .el-main {
   background-color: white;
   padding: 0;
