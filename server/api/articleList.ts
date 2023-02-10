@@ -18,7 +18,7 @@ export default defineEventHandler(() => {
       id: 2,
       author: '掘金酱',
       date: '8天前',
-      url: 'http://localhost:3000',
+      url: 'http://localhost:3000/Article',
       img: 'https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf647779fc3443fd90baf52053a93c78~tplv-k3u1fbpfcp-no-mark:240:240:240:160.awebp?',
       tags: {
         num: 0,
