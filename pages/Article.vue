@@ -86,6 +86,7 @@
                 <span>文章被阅读</span>
               </div>
             </div>
+            <ReleatedArticle />
             <div class="article-directory ">
               <span>目录</span>
               <el-divider />
@@ -103,8 +104,10 @@
 </template>
 <script>
 import '~/assets/style/app.css'
+import ReleatedArticle from '~~/components/ReleatedArticle.vue'
 export default {
   name: 'Zan',
+  components: { ReleatedArticle },
   data () {
     return {
       liked: false,
