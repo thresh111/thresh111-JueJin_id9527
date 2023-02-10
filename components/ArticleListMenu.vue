@@ -86,5 +86,6 @@ const { data: articleListChange } = await useFetch('/api/articleListChange')
 
 .el-main {
   background-color: white;
+  padding: 0;
 }
 </style>
