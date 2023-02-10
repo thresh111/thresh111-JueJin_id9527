@@ -1,9 +1,9 @@
+<script lang="ts"></script>
+
 <template>
   <div>
-    <Article />
+    <ArticleListMenu />
   </div>
 </template>
-
-<script lang="ts"></script>
 
 <style lang="less" scoped></style>
