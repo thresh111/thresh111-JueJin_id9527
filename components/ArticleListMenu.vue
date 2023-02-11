@@ -40,7 +40,19 @@ const articleListChangeIndex = ref('-1')
 const articleListSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const { data: articleListChange } = await useFetch('/api/articleListChange')
+
+async function getArticleListTags () {
+  const { data } = await useAsyncData('articleListChange', () => $fetch('/api/articleListChange'))
+  if (data.value.data[0].attributes.show !== true) {
+    ElMessage({
+      showClose: true,
+      message: 'articleListTags 获取失败!',
+      type: 'error'
+    })
+  }
+  return data.value.data[0].attributes.articleListTags
+}
+const articleListChange = await getArticleListTags()
 </script>
 
 <style lang="less" scoped>

@@ -2,8 +2,8 @@
 declare module 'nitropack' {
   type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T
   interface InternalApi {
-    '/api/navlist': {
-      'get': Awaited<ReturnType<typeof import('../../server/api/navlist.get').default>>
+    '/api/nav-lists': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/nav-lists.get').default>>
     }
     '/api/header': {
       'get': Awaited<ReturnType<typeof import('../../server/api/header.get').default>>
@@ -12,7 +12,7 @@ declare module 'nitropack' {
       'default': Awaited<ReturnType<typeof import('../../server/api/articleListChange').default>>
     }
     '/api/articleList': {
-      'default': Awaited<ReturnType<typeof import('../../server/api/articleList').default>>
+      'get': Awaited<ReturnType<typeof import('../../server/api/articleList.get').default>>
     }
     '/__nuxt_error': {
       'default': Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>

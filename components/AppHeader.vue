@@ -142,8 +142,33 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const { data: headerList } = await useFetch('/api/header')
-const { data: navlist } = await useFetch('/api/navlist')
+
+async function getHeaderList () {
+  const { data } = await useAsyncData('header', () => $fetch('/api/header'))
+  if (data.value.data[0].attributes.show !== true) {
+    ElMessage({
+      showClose: true,
+      message: 'headers 获取失败!',
+      type: 'error'
+    })
+  }
+  return data.value.data[0].attributes.headerTags
+}
+const headerList = await getHeaderList()
+
+async function getNavList () {
+  const { data } = await useAsyncData('nav-lists', () => $fetch('/api/nav-lists'))
+  if (data.value.data[0].attributes.show !== true) {
+    ElMessage({
+      showClose: true,
+      message: 'nvaList 获取失败!',
+      type: 'error'
+    })
+  }
+  return data.value.data[0].attributes.tags
+}
+const navlist = await getNavList()
+
 </script>
 
 <style lang="scss" scoped>

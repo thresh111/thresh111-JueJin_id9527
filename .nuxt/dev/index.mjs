@@ -469,17 +469,17 @@ const errorHandler = (async function errorhandler(error, event) {
   event.node.res.end(await res.text());
 });
 
-const _lazy_4qlUrs = () => Promise.resolve().then(function () { return navlist_get$1; });
+const _lazy_aLQMzM = () => Promise.resolve().then(function () { return navLists_get$1; });
 const _lazy_CTR8Wi = () => Promise.resolve().then(function () { return header_get$1; });
 const _lazy_CzDgem = () => Promise.resolve().then(function () { return articleListChange$1; });
-const _lazy_b66aCw = () => Promise.resolve().then(function () { return articleList$1; });
+const _lazy_pULJ9P = () => Promise.resolve().then(function () { return articleList_get$1; });
 const _lazy_OoXeFF = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/navlist', handler: _lazy_4qlUrs, lazy: true, middleware: false, method: "get" },
+  { route: '/api/nav-lists', handler: _lazy_aLQMzM, lazy: true, middleware: false, method: "get" },
   { route: '/api/header', handler: _lazy_CTR8Wi, lazy: true, middleware: false, method: "get" },
   { route: '/api/articleListChange', handler: _lazy_CzDgem, lazy: true, middleware: false, method: undefined },
-  { route: '/api/articleList', handler: _lazy_b66aCw, lazy: true, middleware: false, method: undefined },
+  { route: '/api/articleList', handler: _lazy_pULJ9P, lazy: true, middleware: false, method: "get" },
   { route: '/__nuxt_error', handler: _lazy_OoXeFF, lazy: true, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_OoXeFF, lazy: true, middleware: false, method: undefined }
 ];
@@ -597,95 +597,19 @@ const errorDev = /*#__PURE__*/Object.freeze({
   template: template
 });
 
-const navlist_get = defineEventHandler(() => {
-  return [
-    {
-      id: 1,
-      title: "\u7EFC\u5408"
-    },
-    {
-      id: 2,
-      title: "\u5173\u6CE8"
-    },
-    {
-      id: 3,
-      title: "\u540E\u7AEF"
-    },
-    {
-      id: 4,
-      title: "\u524D\u7AEF"
-    },
-    {
-      id: 5,
-      title: "Android"
-    },
-    {
-      id: 6,
-      title: "iOS"
-    },
-    {
-      id: 7,
-      title: "\u4EBA\u5DE5\u667A\u80FD"
-    },
-    {
-      id: 8,
-      title: "\u5F00\u53D1\u5DE5\u5177"
-    },
-    {
-      id: 9,
-      title: "\u4EE3\u7801\u4EBA\u751F"
-    },
-    {
-      id: 10,
-      title: "\u9605\u8BFB"
-    }
-  ];
+const navLists_get = defineEventHandler(async () => {
+  const data = await (await fetch("http://127.0.0.1:1337/api/nav-lists")).json();
+  return data;
 });
 
-const navlist_get$1 = /*#__PURE__*/Object.freeze({
+const navLists_get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: navlist_get
+  default: navLists_get
 });
 
-const header_get = defineEventHandler((e) => {
-  return [
-    {
-      id: 1,
-      title: "\u9996\u9875"
-    },
-    {
-      id: 2,
-      title: "\u6CB8\u70B9"
-    },
-    {
-      id: 3,
-      title: "\u8BFE\u7A0B"
-    },
-    {
-      id: 4,
-      title: "\u76F4\u64AD"
-    },
-    {
-      id: 5,
-      title: "\u6D3B\u52A8"
-    },
-    {
-      id: 6,
-      title: "\u7ADE\u8D5B"
-    },
-    {
-      id: 7,
-      title: "\u5546\u57CE"
-    },
-    {
-      id: 8,
-      title: "App"
-    },
-    {
-      id: 9,
-      title: "\u63D2\u4EF6"
-    }
-  ];
+const header_get = defineEventHandler(async () => {
+  const data = await (await fetch("http://127.0.0.1:1337/api/headers")).json();
+  return data;
 });
 
 const header_get$1 = /*#__PURE__*/Object.freeze({
@@ -693,21 +617,9 @@ const header_get$1 = /*#__PURE__*/Object.freeze({
   default: header_get
 });
 
-const articleListChange = defineEventHandler(() => {
-  return [
-    {
-      sort: "/",
-      title: "\u63A8\u8350"
-    },
-    {
-      sort: "newest",
-      title: "\u6700\u65B0"
-    },
-    {
-      sort: "hot",
-      title: "\u70ED\u95E8"
-    }
-  ];
+const articleListChange = defineEventHandler(async () => {
+  const data = await (await fetch("http://127.0.0.1:1337/api/article-list-changes")).json();
+  return data;
 });
 
 const articleListChange$1 = /*#__PURE__*/Object.freeze({
@@ -715,96 +627,14 @@ const articleListChange$1 = /*#__PURE__*/Object.freeze({
   default: articleListChange
 });
 
-const articleList = defineEventHandler(() => {
-  return [
-    {
-      id: 1,
-      author: "\u6398\u91D1\u9171",
-      date: "8\u5929\u524D",
-      url: "http://localhost:3000",
-      img: "https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf647779fc3443fd90baf52053a93c78~tplv-k3u1fbpfcp-no-mark:240:240:240:160.awebp?",
-      tags: {
-        num: 2,
-        tag: ["\u524D\u7AEF", "Vue"]
-      },
-      top: 1,
-      title: "\u65B0\u5E74\u4F0A\u59CB\uFF0C2\u6708\u66F4\u6587\u5E26\u4F60\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\uFF5C \u6398\u91D1\u65E5\u65B0\u8BA1\u5212",
-      info: "\u6398\u53CB\u4EEC\u65B0\u5E74\u5FEB\u4E50~2023\u5E74\u7B2C\u4E00\u6B21\u66F4\u6587\u6311\u6218\u6B63\u5F0F\u4E0A\u7EBF\u5566\uFF01\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u8C03\u6574\u597D\u72B6\u6001\uFF0C\u84C4\u52BF\u5F85\u53D1\u4E86\uFF0C2\u6708\u4E0E\u6398\u91D1\u4E00\u8D77\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\u5427\uFF01"
-    },
-    {
-      id: 2,
-      author: "\u6398\u91D1\u9171",
-      date: "8\u5929\u524D",
-      url: "http://localhost:3000/Article",
-      img: "https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf647779fc3443fd90baf52053a93c78~tplv-k3u1fbpfcp-no-mark:240:240:240:160.awebp?",
-      tags: {
-        num: 0,
-        tag: []
-      },
-      top: 0,
-      title: "\u65B0\u5E74\u4F0A\u59CB\uFF0C2\u6708\u66F4\u6587\u5E26\u4F60\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\uFF5C \u6398\u91D1\u65E5\u65B0\u8BA1\u5212",
-      info: "\u6398\u53CB\u4EEC\u65B0\u5E74\u5FEB\u4E50~2023\u5E74\u7B2C\u4E00\u6B21\u66F4\u6587\u6311\u6218\u6B63\u5F0F\u4E0A\u7EBF\u5566\uFF01\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u8C03\u6574\u597D\u72B6\u6001\uFF0C\u84C4\u52BF\u5F85\u53D1\u4E86\uFF0C2\u6708\u4E0E\u6398\u91D1\u4E00\u8D77\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\u5427\uFF01",
-      view: "2123",
-      good: "112",
-      talk: 123
-    },
-    {
-      id: 3,
-      author: "\u6398\u91D1\u9171",
-      date: "8\u5929\u524D",
-      url: "http://localhost:3000",
-      img: "https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf647779fc3443fd90baf52053a93c78~tplv-k3u1fbpfcp-no-mark:240:240:240:160.awebp?",
-      tags: {
-        num: 1,
-        tag: ["\u524D\u7AEF"]
-      },
-      top: 0,
-      title: "\u65B0\u5E74\u4F0A\u59CB\uFF0C2\u6708\u66F4\u6587\u5E26\u4F60\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\uFF5C \u6398\u91D1\u65E5\u65B0\u8BA1\u5212",
-      info: "\u6398\u53CB\u4EEC\u65B0\u5E74\u5FEB\u4E50~2023\u5E74\u7B2C\u4E00\u6B21\u66F4\u6587\u6311\u6218\u6B63\u5F0F\u4E0A\u7EBF\u5566\uFF01\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u8C03\u6574\u597D\u72B6\u6001\uFF0C\u84C4\u52BF\u5F85\u53D1\u4E86\uFF0C2\u6708\u4E0E\u6398\u91D1\u4E00\u8D77\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\u5427\uFF01",
-      view: "2123w",
-      good: "112",
-      talk: 123
-    },
-    {
-      id: 4,
-      author: "\u6398\u91D1\u9171",
-      date: "8\u5929\u524D",
-      url: "http://localhost:3000",
-      img: "",
-      tags: {
-        num: 5,
-        tag: ["\u524D\u7AEF", "Vue", "js", "html", "css"]
-      },
-      top: 0,
-      title: "\u65B0\u5E74\u4F0A\u59CB\uFF0C2\u6708\u66F4\u6587\u5E26\u4F60\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\uFF5C \u6398\u91D1\u65E5\u65B0\u8BA1\u5212",
-      info: "\u6398\u53CB\u4EEC\u65B0\u5E74\u5FEB\u4E50~2023\u5E74\u7B2C\u4E00\u6B21\u66F4\u6587\u6311\u6218\u6B63\u5F0F\u4E0A\u7EBF\u5566\uFF01\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u8C03\u6574\u597D\u72B6\u6001\uFF0C\u84C4\u52BF\u5F85\u53D1\u4E86\uFF0C2\u6708\u4E0E\u6398\u91D1\u4E00\u8D77\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\u5427\uFF01",
-      view: "2123",
-      good: "112",
-      talk: 123
-    },
-    {
-      id: 6,
-      author: "\u6398\u91D1\u9171",
-      date: "8\u5929\u524D",
-      url: "http://localhost:3000",
-      img: "",
-      tags: {
-        num: 0,
-        tag: []
-      },
-      top: 0,
-      title: "\u65B0\u5E74\u4F0A\u59CB\uFF0C2\u6708\u66F4\u6587\u5E26\u4F60\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\uFF5C \u6398\u91D1\u65E5\u65B0\u8BA1\u5212",
-      info: "\u6398\u53CB\u4EEC\u65B0\u5E74\u5FEB\u4E50~2023\u5E74\u7B2C\u4E00\u6B21\u66F4\u6587\u6311\u6218\u6B63\u5F0F\u4E0A\u7EBF\u5566\uFF01\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u8C03\u6574\u597D\u72B6\u6001\uFF0C\u84C4\u52BF\u5F85\u53D1\u4E86\uFF0C2\u6708\u4E0E\u6398\u91D1\u4E00\u8D77\u5728\u6280\u672F\u5199\u4F5C\u4E4B\u8DEF\u300C\u5154\u98DE\u731B\u8FDB\u300D\u5427\uFF01",
-      view: "2123",
-      good: "112",
-      talk: 123
-    }
-  ];
+const articleList_get = defineEventHandler(async () => {
+  const data = await (await fetch("http://127.0.0.1:1337/api/articles")).json();
+  return data;
 });
 
-const articleList$1 = /*#__PURE__*/Object.freeze({
+const articleList_get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: articleList
+  default: articleList_get
 });
 
 const appRootId = "__nuxt";

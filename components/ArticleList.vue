@@ -1,5 +1,5 @@
 <template>
-  <div v-for="item in articleList" :key="item.id" class="articleDiv">
+  <div v-for="item in articleList" :key="item.articleId" class="articleDiv">
     <div class="authorAndTime">
       <client-only>
         <el-menu
@@ -36,7 +36,7 @@
         <a class="articleTittle" :href="item.url">{{ item.title }}</a>
         {{ item.info }}
       </div>
-      <img v-if="item.img !== ''" class="articleImg" :src="item.img">
+      <!-- <img v-if="item.imageUrl !== ''" class="articleImg" :src="item.img"> -->
     </div>
     <div v-if="item.top !== 1" class="touristPanel">
       <a class="panelItem">
@@ -57,7 +57,21 @@ const articleInfoChangeIndex = ref('-1')
 const articleInfoSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const { data: articleList } = await useFetch('/api/articleList')
+// const { data: articleList } = await useFetch('/api/articleList')
+async function getArticleList () {
+  const { data } = await useAsyncData('articleList', () => $fetch('/api/articleList'))
+  const dataChange = data.value.data[0].attributes
+  // if (data.value.data[0].attributes.show !== true) {
+  //   ElMessage({
+  //     showClose: true,
+  //     message: 'articleListTags 获取失败!',
+  //     type: 'error'
+  //   })
+  // }
+  return dataChange
+}
+const articleList = await getArticleList()
+console.log(articleList)
 </script>
 
 <style lang="less" scoped>
