@@ -30,11 +30,8 @@
               </div>
           </div>
           <div class="author-article">
-            <VueShowdown
-              markdown="## markdown text {{ message }}"
-              :vue-template="true"
-              :vue-template-data="{ message }"
-            />
+            <p v-html="markdown"></p>
+            <!-- <p>{{ markdown }}</p> -->
           </div>
         </div>
       </el-main>
@@ -67,7 +64,7 @@
                 <el-button   @click="favor"
                       class="my_button" :style="{backgroundColor:bg_color, color: ft_color,}"
                       @mouseenter="change()" @mouseleave="goback()">
-                  {{content}}
+                  {{subscribe}}
               </el-button>
               </div>
               <div class="message">
@@ -114,71 +111,49 @@ import "highlight.js/styles/default.css";
 import '@/style/app.css'
 import { VueShowdown } from 'vue-showdown';
 import { setupDotenv } from 'c12';
-import {View,} from '@element-plus/icons-vue'
+import {View,} from '@element-plus/icons-vue';
 import { defineComponent, ref } from 'vue';
-// function convert(){
-//     var text = document.getElementById("oriContent").value;
-//     var converter = new showdown.Converter();
-//     var html = converter.makeHtml(text);
-//     document.getElementById("result").innerHTML = html;
-// }
+import MarkdownIt from 'markdown-it';
 export default {
-        // directives: {
-        //   highlight: {
-        //     update(el) {
-        //       let blocks = el.querySelectorAll("pre code");
-        //       blocks.forEach((block) => {
-        //         hljs.highlightBlock(block);
-        //       });
-        //     },
-        //   },
-        // },
-        setup() {
-          const message = ref("hello, vue template in markdown\n 1234")
-          return { message };
-        },
-        components:{
-          View,
-          VueShowdown,
-        },
+        
         name: "zan",
         markdown_content: "12345",
         // message,
         data () {
             return{
                 liked:false,
-                content:'关注',
+                content:'markdown: # Nuxt 3 Minimal Starter Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more. ## Setup Make sure to install the dependencies: ```bash # yarn yarn install # npm npm install # pnpm pnpm install ``` ## Development Server Start the development server on http://localhost:3000 ```bash npm run dev ``` 1. 解决基本布局问题，文章、作者信息和文章目录的布局 ✔使用eslint和prettier</br> ✔已使用element-plus自动导入</br> ✔2月6日凌晨完成了主页文章部分的菜单UI</br> ✔计划2月6日完成文章部分的UI。</br> ',
                 bg_color:"#1D7DFA",
                 ft_color:"#fff",
+                subscribe:'关注'
                 // message,
             }
         },
+        components:{
+          View,
+          VueShowdown,
+        },
+        computed:{
+          markdown() {
+            const md = new MarkdownIt();
+            // this.content = require('./README.md');
+            const result = md.render(this.content);
+            return result;
+          }
+        },
+
         methods:{
-            // setup() {
-            //   const message = ref('hello, vue template in markdown!43221')
-            //   return { message };
-            // },
-            // getDocment(val) {
-            //     // 请求接口
-            //     lookDoc({ id: val }).then((res) => {
-            //       this.content = res.data.info[0].content;
-            //       this.content = "## 转换markdown语法为html语法"
-            //     });
-            //     },
-            //     // 转换markdown语法为html语法
-            //     compileMarkDown(val) {
-            //     return converter.makeHtml(val);
-            // },
+            
             favor (e) {
                 this.liked=!this.liked;
                 if(this.liked){
-                    this.content="已关注";
+                    this.subscribe="已关注";
                     this.bg_color="#FFFFFF";
                     this.ft_color="#000000";
                 }
 
                 else{
-                    this.content="关注"
+                    this.subscribe="关注"
                     this.bg_color="#1D7DFA";
                     this.ft_color="#fff";
 

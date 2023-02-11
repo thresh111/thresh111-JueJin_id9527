@@ -86,9 +86,9 @@
     z-index: 1;
     border: 1px solid hsla(0, 0, 59.2, 0.1);
     border-radius: 1px;
-    min-width: 700px;
+    min-width: 800px;
     height: 100%;
-    max-width: 960px;
+    max-width: 800px;
     background-color: #f4f5f5;
     padding-left: 2.67rem;
     padding-right: 2.67rem;
@@ -151,7 +151,6 @@
     vertical-align: middle;
     /* font-size: 14px;
     border-radius: 4px; */
-    vertical-align: middle;
 }
 
 .el-container {
