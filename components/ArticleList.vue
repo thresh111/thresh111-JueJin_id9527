@@ -1,5 +1,5 @@
 <template>
-  <div v-for="item in articleList" :key="item.articleId" class="articleDiv">
+  <div v-for="item in articleList.data" :key="item.id" class="articleDiv">
     <div class="authorAndTime">
       <client-only>
         <el-menu
@@ -11,20 +11,20 @@
         >
           <div>
             <el-menu-item style="padding-left: 0;padding-top:0;padding-bottom:0;padding-right: 8px">
-              {{ item.author }}
+              {{ item.attributes.author }}
             </el-menu-item>
             <a class="rightLine" />
           </div>
           <div>
             <el-menu-item style="padding-left: 0;padding-top:0;padding-bottom:0;padding-right: 8px">
-              {{ item.date }}
+              {{ item.attributes.date }}
             </el-menu-item>
-            <a class="rightLineSec" :style="item.tags.num === 0? 'border-right:none':'padding-left: 30px'" />
+            <a class="rightLineSec" :style="item.attributes.articleTags.tags.num === 0? 'border-right:none':'padding-left: 30px'" />
           </div>
-          <div v-for="(item1,i) in item.tags.tag" :key="item1">
+          <div v-for="(item1,i) in item.attributes.articleTags.tags.tag" :key="item1">
             <el-menu-item style="padding-left: 0;padding-top:0;padding-bottom:0;padding-right: 8px">
               {{ item1 }}
-              <a class="rightPoint" :style="i === item.tags.tag.length-1 ? 'background:none':''" />
+              <a class="rightPoint" :style="i === item.attributes.articleTags.tags.tag.length-1 ? 'background:none':''" />
             </el-menu-item>
           </div>
         </el-menu>
@@ -33,45 +33,48 @@
     </div>
     <div class="lessArticle">
       <div class="articleIntro">
-        <a class="articleTittle" :href="item.url">{{ item.title }}</a>
-        {{ item.info }}
+        <a class="articleTittle" :href="item.attributes.articleUrl">{{ item.attributes.title }}</a>
+        {{ item.attributes.Info }}
       </div>
-      <!-- <img v-if="item.imageUrl !== ''" class="articleImg" :src="item.img"> -->
+      <img v-if="item.attributes.imageUrl !== null" class="articleImg" :src="item.attributes.imageUrl">
     </div>
-    <div v-if="item.top !== 1" class="touristPanel">
+    <div v-if="item.attributes.top !== true" class="touristPanel">
       <a class="panelItem">
-        <i v-if="item.top !== 1" class="touristView" /> <i v-else /><span>{{ item.view }}</span>
+        <i v-if="item.attributes.top !== true" class="touristView" /> <i v-else />
+        <span>{{ (item.attributes.view) }}</span>
       </a>
       <a class="panelItem">
-        <i v-if="item.top !== 1" class="touristGood" /><i v-else /> <span>{{ item.good }}</span>
+        <i v-if="item.attributes.top !== true" class="touristGood" /><i v-else />
+        <span>{{ (item.attributes.good) }}</span>
       </a>
       <a class="panelItem">
-        <i v-if="item.top !== 1" class="touristTalk" /> <i v-else /><span>{{ item.talk }}</span>
+        <i v-if="item.attributes.top !== true" class="touristTalk" /> <i v-else />
+        <span>{{ (item.attributes.talk) }}</span>
       </a>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-const articleInfoChangeIndex = ref('-1')
-const articleInfoSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-// const { data: articleList } = await useFetch('/api/articleList')
-async function getArticleList () {
-  const { data } = await useAsyncData('articleList', () => $fetch('/api/articleList'))
-  const dataChange = data.value.data[0].attributes
-  // if (data.value.data[0].attributes.show !== true) {
-  //   ElMessage({
-  //     showClose: true,
-  //     message: 'articleListTags 获取失败!',
-  //     type: 'error'
-  //   })
-  // }
-  return dataChange
-}
-const articleList = await getArticleList()
-console.log(articleList)
+<script lang="ts">
+export default defineComponent({
+  async setup () {
+    const articleInfoChangeIndex = ref('-1')
+    const articleInfoSelect = (key: string, keyPath: string[]) => {
+      console.log(key, keyPath)
+    }
+    async function getArticleList () {
+      const { data } = await useAsyncData('articleList', () => $fetch('/api/articleList'))
+      return data.value
+    }
+    const articleList = await getArticleList()
+    return {
+      articleInfoChangeIndex,
+      articleInfoSelect,
+      articleList
+    }
+  }
+})
+
 </script>
 
 <style lang="less" scoped>

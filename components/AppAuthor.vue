@@ -3,41 +3,15 @@
     <div class="author-list">
       <header>🎖️作者榜</header>
       <div class="user-list">
-        <div class="items">
+        <div v-for="item in authorList.data" :key="item.attributes.id" class="items">
           <div href="" class="link">
-            <img src="https://p3-passport.byteimg.com/img/mosaic-legacy/3797/2889309425~100x100.awebp" alt="" class="head">
+            <img :src="item.attributes.authorImgUrl" alt="" class="head">
             <div class="user-info">
               <a href="" class="username">
-                <span class="name">前端工程师</span>
-                <span class="rank"><img src="~/assets/img/lv-4.a78c420.png" alt="" class="userlevel"></span></a>
+                <span class="name">{{ item.attributes.authorName }}</span>
+                <span class="rank"><img :src="item.attributes.authorLevelUrl" alt="" class="userlevel"></span></a>
               <div class="position">
-                前端前端前端前端
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="items">
-          <div href="" class="link">
-            <img src="https://p3-passport.byteimg.com/img/mosaic-legacy/3797/2889309425~100x100.awebp" alt="" class="head">
-            <div class="user-info">
-              <a href="" class="username">
-                <span class="name">前端工程师</span>
-                <span class="rank"><img src="~/assets/img/lv-4.a78c420.png" alt="" class="userlevel"></span></a>
-              <div class="position">
-                前端前端前端前端
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="items">
-          <div href="" class="link">
-            <img src="https://p3-passport.byteimg.com/img/mosaic-legacy/3797/2889309425~100x100.awebp" alt="" class="head">
-            <div class="user-info">
-              <a href="" class="username">
-                <span class="name">前端工程师</span>
-                <span class="rank"><img src="~/assets/img/lv-4.a78c420.png" alt="" class="userlevel"></span></a>
-              <div class="position">
-                前端前端前端前端
+                {{ item.attributes.authorInfo }}
               </div>
             </div>
           </div>
@@ -60,15 +34,20 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  setup () {
-    return {
-
-    }
+<script lang='ts' setup>
+async function getAuthorList () {
+  const { data } = await useAsyncData('authorList', () => $fetch('/api/authorList'))
+  if (data.value.data[0].attributes.show !== true) {
+    ElMessage({
+      showClose: true,
+      message: 'Advertise 获取失败!',
+      type: 'error'
+    })
   }
-})
+  return data.value
+}
+const authorList = await getAuthorList()
+
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@
     <div class="sidebar">
       <div class="banner">
         <a href="">
-          <img src="~/assets/img/0.webp" alt="" style="width:100%;">
+          <img :src="Advertise.advertisedUrl" alt="" style="width:100%;">
         </a>
         <div class="close">
           <i> <svg
@@ -34,15 +34,21 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  setup () {
-    return {
+<script lang='ts' setup>
 
-    }
+async function getAdvertise () {
+  const { data } = await useAsyncData('advertiseImg', () => $fetch('/api/advertiseImg'))
+  if (data.value.data[0].attributes.show !== true) {
+    ElMessage({
+      showClose: true,
+      message: 'Advertise 获取失败!',
+      type: 'error'
+    })
   }
-})
+  return data.value.data[0].attributes
+}
+const Advertise = await getAdvertise()
+
 </script>
 
 <style  scoped>

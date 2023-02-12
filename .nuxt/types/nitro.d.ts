@@ -8,11 +8,17 @@ declare module 'nitropack' {
     '/api/header': {
       'get': Awaited<ReturnType<typeof import('../../server/api/header.get').default>>
     }
+    '/api/authorList': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/authorList.get').default>>
+    }
     '/api/articleListChange': {
       'default': Awaited<ReturnType<typeof import('../../server/api/articleListChange').default>>
     }
     '/api/articleList': {
       'get': Awaited<ReturnType<typeof import('../../server/api/articleList.get').default>>
+    }
+    '/api/advertiseImg': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/advertiseImg.get').default>>
     }
     '/__nuxt_error': {
       'default': Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
