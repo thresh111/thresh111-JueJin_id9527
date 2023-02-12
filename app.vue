@@ -30,8 +30,9 @@
               </div>
           </div>
           <div class="author-article">
-            <p v-html="markdown"></p>
-            <!-- <p>{{ markdown }}</p> -->
+            <div ref="markdownContent">
+              <p v-html="markdown"></p>
+            </div>
           </div>
         </div>
       </el-main>
@@ -90,11 +91,7 @@
         <div class="article-directory aside-size">
             <span>目录</span>
             <el-divider></el-divider>
-            <div class="directory">
-                <span>
-                  1234
-                </span>
-            </div>
+            
         </div>
       </el-space>
       </el-aside>
@@ -106,14 +103,18 @@
 </style>
 
 <script>
-import hljs from "highlight.js";
-import "highlight.js/styles/default.css";
+import { createApp } from 'vue'
+import Vue from 'vue';
 import '@/style/app.css'
 import { VueShowdown } from 'vue-showdown';
-import { setupDotenv } from 'c12';
 import {View,} from '@element-plus/icons-vue';
-import { defineComponent, ref } from 'vue';
 import MarkdownIt from 'markdown-it';
+import * as fs from 'fs-extra';
+import anchor from 'markdown-it-anchor';
+// import outline from 'vue-outline';
+// import outline from 'vue-outline'
+// Vue.use(outline);
+// import {catalog, getCatalog} from 'vue-catalog';
 export default {
         
         name: "zan",
@@ -122,28 +123,71 @@ export default {
         data () {
             return{
                 liked:false,
-                content:'markdown: # Nuxt 3 Minimal Starter Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more. ## Setup Make sure to install the dependencies: ```bash # yarn yarn install # npm npm install # pnpm pnpm install ``` ## Development Server Start the development server on http://localhost:3000 ```bash npm run dev ``` 1. 解决基本布局问题，文章、作者信息和文章目录的布局 ✔使用eslint和prettier</br> ✔已使用element-plus自动导入</br> ✔2月6日凌晨完成了主页文章部分的菜单UI</br> ✔计划2月6日完成文章部分的UI。</br> ',
+                content:'# markdown: &nbsp #  Nuxt 3 Minimal Starter Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more. ## Setup Make sure to install the dependencies: ```bash # yarn yarn install # npm npm install # pnpm pnpm install ``` ## Development Server Start the development server on http://localhost:3000 ```bash npm run dev ``` 1. 解决基本布局问题，文章、作者信息和文章目录的布局 ✔使用eslint和prettier</br> ✔已使用element-plus自动导入</br> ✔2月6日凌晨完成了主页文章部分的菜单UI</br> ✔计划2月6日完成文章部分的UI。</br> ',
                 bg_color:"#1D7DFA",
                 ft_color:"#fff",
-                subscribe:'关注'
+                subscribe:'关注',
                 // message,
+                str:'# 标题',
+                catalog: {
+                  levels: [], // 有层级关系的目录结构数组
+                  noLevels: [], // 没有层级关系的目录结构数组
+                },
+                // markdown: '### 标题',
             }
         },
         components:{
           View,
           VueShowdown,
+          // catalog,
         },
         computed:{
           markdown() {
+            // fs.writeFileSync("./README.md", "")
+            let readf = fs.readFileSync("./README.md", "utf8")
             const md = new MarkdownIt();
-            // this.content = require('./README.md');
-            const result = md.render(this.content);
+            // this.content=README;
+            md.use(anchor,{
+              level:1,
+              permalink: true,
+              // permalinkClass:  header-anchor,
+              permalinkSymbol:'#',
+            });
+            // const text=readf.text();
+            const result = md.render(readf);
             return result;
           }
         },
-
+        // mounted () {
+        //   // 获取文章目录结构
+        //   let {levels, noLevels} = getCatalog(this.$refs.content)
+        //   this.catalog = {
+        //     levels,
+        //     noLevels
+        //   }
+        // },
         methods:{
-            
+            // 生成目录
+            // generate_catalog(){
+            // this.$nextTick(() => {
+            //   const article_content = this.$refs.markdownContent;
+            //   const nodes = ["h1", "h2", "h3"];
+            //   let titles = [];
+            //   article_content.childNodes.forEach((e, index) => {
+            //     if (nodes.includes(e.nodeName)) {
+            //       const id = "header-" + index;
+            //       e.setAttribute("id", id);
+            //       titles.push({
+            //         id: id,
+            //         title: e.innerHTML,
+            //         level: Number(e.nodeName.substring(1, 2)),
+            //         nodeName: e.nodeName
+            //       });
+            //     }
+            //   });
+            //   this.catalog = titles;
+            // });
+            // },
             favor (e) {
                 this.liked=!this.liked;
                 if(this.liked){
@@ -178,5 +222,3 @@ export default {
     }
     
 </script>
-
-
