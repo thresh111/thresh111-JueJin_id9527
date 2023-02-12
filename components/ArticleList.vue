@@ -33,7 +33,10 @@
     </div>
     <div class="lessArticle">
       <div class="articleIntro">
-        <a class="articleTittle" :href="item.attributes.articleUrl">{{ item.attributes.title }}</a>
+        <!-- <Nuxt-link :to="'/' + item.attributes.uid" /> -->
+        <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" class="articleTittle">
+          {{ item.attributes.title }}
+        </nuxt-link>
         {{ item.attributes.Info }}
       </div>
       <img v-if="item.attributes.imageUrl !== null" class="articleImg" :src="item.attributes.imageUrl">

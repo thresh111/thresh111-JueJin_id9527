@@ -17,6 +17,9 @@ declare module 'nitropack' {
     '/api/articleList': {
       'get': Awaited<ReturnType<typeof import('../../server/api/articleList.get').default>>
     }
+    '/api/article': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/article.get').default>>
+    }
     '/api/advertiseImg': {
       'get': Awaited<ReturnType<typeof import('../../server/api/advertiseImg.get').default>>
     }
