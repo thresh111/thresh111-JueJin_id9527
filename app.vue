@@ -111,15 +111,9 @@ import {View,} from '@element-plus/icons-vue';
 import MarkdownIt from 'markdown-it';
 import * as fs from 'fs-extra';
 import anchor from 'markdown-it-anchor';
-// import outline from 'vue-outline';
-// import outline from 'vue-outline'
-// Vue.use(outline);
-// import {catalog, getCatalog} from 'vue-catalog';
 export default {
-        
         name: "zan",
         markdown_content: "12345",
-        // message,
         data () {
             return{
                 liked:false,
@@ -129,11 +123,7 @@ export default {
                 subscribe:'关注',
                 // message,
                 str:'# 标题',
-                catalog: {
-                  levels: [], // 有层级关系的目录结构数组
-                  noLevels: [], // 没有层级关系的目录结构数组
-                },
-                // markdown: '### 标题',
+                catalog: '',
             }
         },
         components:{
@@ -143,29 +133,12 @@ export default {
         },
         computed:{
           markdown() {
-            // fs.writeFileSync("./README.md", "")
             let readf = fs.readFileSync("./README.md", "utf8")
             const md = new MarkdownIt();
-            // this.content=README;
-            md.use(anchor,{
-              level:1,
-              permalink: true,
-              // permalinkClass:  header-anchor,
-              permalinkSymbol:'#',
-            });
-            // const text=readf.text();
             const result = md.render(readf);
             return result;
           }
         },
-        // mounted () {
-        //   // 获取文章目录结构
-        //   let {levels, noLevels} = getCatalog(this.$refs.content)
-        //   this.catalog = {
-        //     levels,
-        //     noLevels
-        //   }
-        // },
         methods:{
             // 生成目录
             // generate_catalog(){
