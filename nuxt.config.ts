@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@element-plus/nuxt'],
+  modules: ['@element-plus/nuxt', '@nuxt/devtools'],
   css: ['@/assets/style/main.css', '@/assets/reset.css', '@/assets/elementplus-reset.scss'],
   vite: {
     server: {

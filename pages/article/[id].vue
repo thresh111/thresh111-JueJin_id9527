@@ -5,27 +5,27 @@
         <el-main>
           <div class="main-article">
             <h1 class="article-title">
-              {{ article.title }}
+              {{ articles.title }}
             </h1>
             <div class="author-info-block">
               <div class="author-png">
                 <a href="https://www.baidu.com" target="_blank" class="avatar-link">
                   <el-avatar
-                    :src="article.avatarImgUrl"
+                    :src="articles.avatarImgUrl"
                   />
                 </a>
               </div>
               <div class="author-name">
                 <a href="https://www.baidu.com" target="_blank" class="avatar-link author-name">
-                  <span style="max-width: 128px;">{{ article.authorName }}</span>
+                  <span style="max-width: 128px;">{{ articles.authorName }}</span>
                   <span>
-                    <img :src="article.levelUrl" class="level">
-                    <img :src="article.superLevelUrl">
+                    <img :src="articles.levelUrl" class="level">
+                    <img :src="articles.superLevelUrl">
                   </span>
                 </a>
                 <div class="time-readsum">
-                  <span class="time">{{ article.time }}</span>
-                  <span class="readsum"> {{ article.read }} </span>
+                  <span class="time">{{ articles.time }}</span>
+                  <span class="readsum"> {{ articles.read }} </span>
                 </div>
               </div>
             </div>
@@ -44,20 +44,20 @@
                 <div class="author-png">
                   <a href="https://www.baidu.com" target="_blank" class="avatar-link">
                     <el-avatar
-                      :src="article.avatarImgUrl"
+                      :src="articles.avatarImgUrl"
                     />
                   </a>
                 </div>
                 <div class="author-name">
                   <a href="https://www.baidu.com" target="_blank" class="avatar-link author-name">
-                    <span>{{ article.authorName }}</span>
+                    <span>{{ articles.authorName }}</span>
                     <span>
-                      <img :src="article.levelUrl" class="level">
-                      <img :src="article.superLevelUrl">
+                      <img :src="articles.levelUrl" class="level">
+                      <img :src="articles.superLevelUrl">
                     </span>
                   </a>
                   <div class="author-identity">
-                    <span class="author-identity">{{ article.role }}</span>
+                    <span class="author-identity">{{ articles.role }}</span>
                   </div>
                 </div>
               </div>
@@ -85,11 +85,11 @@
               <div class="goodOfRead">
                 <div class="zan icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" class="iocn like"><g fill="none" fill-rule="evenodd" transform="translate(0 .57)"><ellipse cx="12.5" cy="12.57" fill="#E1EFFF" rx="12.5" ry="12.57" /><path fill="#7BB9FF" d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z" /></g></svg>
-                  <span class="content">{{ article.good }}</span>
+                  <span class="content">{{ articles.good }}</span>
                 </div>
                 <div class="kan icon">
                   <svg width="25" height="25" viewBox="0 0 25 25" class="view icon"><g fill="none" fill-rule="evenodd"><circle cx="12.5" cy="12.5" r="12.5" fill="#E1EFFF" /><path fill="#7BB9FF" d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z" /></g></svg>
-                  <span class="content">{{ article.read }}</span>
+                  <span class="content">{{ articles.read }}</span>
                 </div>
               </div>
             </div>
@@ -111,9 +111,9 @@ import MarkdownIt from 'markdown-it'
 export default {
   name: 'Zan',
   markdown_content: '12345',
-  async setup () {
-    async function markdown () {
-      const { data } = await useAsyncData('article', () => $fetch('/api/article'))
+  setup () {
+    function markdown () {
+      const { data: article } = useLazyAsyncData('article', () => $fetch('/api/article'))
       // if (data.value.data[0].attributes.show !== true) {
       //   ElMessage({
       //     showClose: true,
@@ -123,10 +123,10 @@ export default {
       // }
 
       // 处理其他数据
-      const article = data.value.data[0].attributes
+      const articles = article.value.data[0].attributes
       // 处理markdown
       const md = new MarkdownIt()
-      const result = md.render(data.value.data[0].attributes.articleText)
+      const result = md.render(article.value.data[0].attributes.articleText)
       const lines = result.split('\n')
       const regex = /<[hH][1-6]>.*?<\/[hH][1-6]>/g
       const toc = []
@@ -134,10 +134,10 @@ export default {
         toc[i] = regex.exec(lines[i])
       }
       const tocs = toc.filter(line => line !== null)
-      return { result, tocs, article }
+      return { result, tocs, articles }
     }
-    const { result, tocs, article } = await markdown()
-    return { result, tocs, article }
+    const { result, tocs, articles } = markdown()
+    return { result, tocs, articles }
   },
   data () {
     return {
