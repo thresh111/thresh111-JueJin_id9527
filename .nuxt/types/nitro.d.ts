@@ -11,14 +11,14 @@ declare module 'nitropack' {
     '/api/authorList': {
       'get': Awaited<ReturnType<typeof import('../../server/api/authorList.get').default>>
     }
+    '/api/articles': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/articles.get').default>>
+    }
     '/api/articleListChange': {
       'default': Awaited<ReturnType<typeof import('../../server/api/articleListChange').default>>
     }
     '/api/articleList': {
       'get': Awaited<ReturnType<typeof import('../../server/api/articleList.get').default>>
-    }
-    '/api/article': {
-      'get': Awaited<ReturnType<typeof import('../../server/api/article.get').default>>
     }
     '/api/advertiseImg': {
       'get': Awaited<ReturnType<typeof import('../../server/api/advertiseImg.get').default>>

@@ -93,6 +93,7 @@
                 </div>
               </div>
             </div>
+            <ReleatedArticle />
             <div class="article-directory aside-size">
               <span>目录</span>
               <el-divider />
@@ -109,24 +110,15 @@
 import MarkdownIt from 'markdown-it'
 
 export default {
-  name: 'Zan',
-  markdown_content: '12345',
-  setup () {
-    function markdown () {
-      const { data: article } = useLazyAsyncData('article', () => $fetch('/api/article'))
-      // if (data.value.data[0].attributes.show !== true) {
-      //   ElMessage({
-      //     showClose: true,
-      //     message: 'nvaList 获取失败!',
-      //     type: 'error'
-      //   })
-      // }
-
+  async setup () {
+    async function markdown () {
+      const route = useRoute()
+      const { data: article } = await useLazyAsyncData('articles', () => $fetch('/api/articles/'))
       // 处理其他数据
-      const articles = article.value.data[0].attributes
+      const articles = article.value.data[route.params.id - 1].attributes
       // 处理markdown
       const md = new MarkdownIt()
-      const result = md.render(article.value.data[0].attributes.articleText)
+      const result = md.render(article.value.data[route.params.id - 1].attributes.articleText)
       const lines = result.split('\n')
       const regex = /<[hH][1-6]>.*?<\/[hH][1-6]>/g
       const toc = []
@@ -136,7 +128,7 @@ export default {
       const tocs = toc.filter(line => line !== null)
       return { result, tocs, articles }
     }
-    const { result, tocs, articles } = markdown()
+    const { result, tocs, articles } = await markdown()
     return { result, tocs, articles }
   },
   data () {

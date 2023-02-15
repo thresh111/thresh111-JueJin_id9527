@@ -1,6 +1,16 @@
 export default defineNuxtConfig({
   modules: ['@element-plus/nuxt', '@nuxt/devtools'],
   css: ['@/assets/style/main.css', '@/assets/reset.css', '@/assets/elementplus-reset.scss'],
+  devtools: {
+    enabled: true,
+    vscode: {
+      // enabled: true,
+      // startOnBoot: false,
+      // reuseExistingServer: true,
+      // medium: 'tunnel',
+      // tunnel: 'laughing-penguin'
+    }
+  },
   vite: {
     server: {
       proxy: {

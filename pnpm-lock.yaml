@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/eslint-parser': ^7.19.1
   '@element-plus/nuxt': ^1.0.3
-  '@nuxt/devtools': ^0.1.2
+  '@nuxt/devtools': ^0.1.0
   '@nuxt/eslint-config': ^0.1.1
   '@nuxtjs/eslint-config-typescript': ^12.0.0
   '@nuxtjs/eslint-module': ^3.1.0

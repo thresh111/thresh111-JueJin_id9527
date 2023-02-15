@@ -487,9 +487,9 @@ const errorHandler = (async function errorhandler(error, event) {
 const _lazy_aLQMzM = () => Promise.resolve().then(function () { return navLists_get$1; });
 const _lazy_CTR8Wi = () => Promise.resolve().then(function () { return header_get$1; });
 const _lazy_3bUZxv = () => Promise.resolve().then(function () { return authorList_get$1; });
+const _lazy_nb1UCv = () => Promise.resolve().then(function () { return articles_get$1; });
 const _lazy_CzDgem = () => Promise.resolve().then(function () { return articleListChange$1; });
 const _lazy_pULJ9P = () => Promise.resolve().then(function () { return articleList_get$1; });
-const _lazy_WXllYL = () => Promise.resolve().then(function () { return article_get$1; });
 const _lazy_DrxtAr = () => Promise.resolve().then(function () { return advertiseImg_get$1; });
 const _lazy_TA5LdT = () => Promise.resolve().then(function () { return renderer$1; });
 
@@ -497,9 +497,9 @@ const handlers = [
   { route: '/api/nav-lists', handler: _lazy_aLQMzM, lazy: true, middleware: false, method: "get" },
   { route: '/api/header', handler: _lazy_CTR8Wi, lazy: true, middleware: false, method: "get" },
   { route: '/api/authorList', handler: _lazy_3bUZxv, lazy: true, middleware: false, method: "get" },
+  { route: '/api/articles', handler: _lazy_nb1UCv, lazy: true, middleware: false, method: "get" },
   { route: '/api/articleListChange', handler: _lazy_CzDgem, lazy: true, middleware: false, method: undefined },
   { route: '/api/articleList', handler: _lazy_pULJ9P, lazy: true, middleware: false, method: "get" },
-  { route: '/api/article', handler: _lazy_WXllYL, lazy: true, middleware: false, method: "get" },
   { route: '/api/advertiseImg', handler: _lazy_DrxtAr, lazy: true, middleware: false, method: "get" },
   { route: '/__nuxt_error', handler: _lazy_TA5LdT, lazy: true, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_TA5LdT, lazy: true, middleware: false, method: undefined }
@@ -658,6 +658,16 @@ const authorList_get$1 = /*#__PURE__*/Object.freeze({
   default: authorList_get
 });
 
+const articles_get = defineEventHandler(async () => {
+  const data = await (await fetch("http://127.0.0.1:1337/api/author-articles")).json();
+  return data;
+});
+
+const articles_get$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: articles_get
+});
+
 const articleListChange = defineEventHandler(async () => {
   const data = await (await fetch("http://127.0.0.1:1337/api/article-list-changes")).json();
   return data;
@@ -676,16 +686,6 @@ const articleList_get = defineEventHandler(async () => {
 const articleList_get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   default: articleList_get
-});
-
-const article_get = defineEventHandler(async () => {
-  const data = await (await fetch("http://127.0.0.1:1337/api/author-articles")).json();
-  return data;
-});
-
-const article_get$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: article_get
 });
 
 const advertiseImg_get = defineEventHandler(async () => {

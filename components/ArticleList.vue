@@ -34,7 +34,7 @@
     <div class="lessArticle">
       <div class="articleIntro">
         <!-- <Nuxt-link :to="'/' + item.attributes.uid" /> -->
-        <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" class="articleTittle">
+        <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" target="_blank" class="articleTittle">
           {{ item.attributes.title }}
         </nuxt-link>
         {{ item.attributes.Info }}

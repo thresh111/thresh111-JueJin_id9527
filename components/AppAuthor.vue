@@ -3,8 +3,8 @@
     <div class="author-list">
       <header>🎖️作者榜</header>
       <div class="user-list">
-        <div v-for="item in authorList.data" :key="item.attributes.id" class="items">
-          <div href="" class="link">
+        <div v-for="(item, id) in authorList.data" :key="item.attributes.id" class="items">
+          <div v-if="id < 3" href="" class="link">
             <img :src="item.attributes.authorImgUrl" alt="" class="head">
             <div class="user-info">
               <a href="" class="username">
