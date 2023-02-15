@@ -59,7 +59,7 @@ const articleListChange = await getArticleListTags()
 .homeBody {
   position: relative;
   max-width: 960px;
-  margin: 66px auto;
+  margin: 25px auto;
   height: 100%;
   background-color: #f4f5f5;
 }

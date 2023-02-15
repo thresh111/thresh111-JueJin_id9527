@@ -1,6 +1,6 @@
 <template>
   <div class="contain">
-    <AppHeader />
+    <AppNav />
     <ArticleListMenu />
   </div>
 </template>

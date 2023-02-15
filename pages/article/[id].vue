@@ -32,6 +32,11 @@
             <div class="author-article">
               <div ref="markdownContent">
                 <div class="MarkdownText" v-html="result" />
+                <!-- <div class="MarkdownText">
+                  <ContentRenderer :value="articles.articleText">
+                    <ContentRendererMarkdown :value="articles.articleText" />
+                  </ContentRenderer>
+                </div> -->
                 <!-- {{ markdownoo }} -->
               </div>
             </div>
@@ -113,12 +118,13 @@ export default {
   async setup () {
     async function markdown () {
       const route = useRoute()
-      const { data: article } = await useLazyAsyncData('articles', () => $fetch('/api/articles/'))
-      // 处理其他数据
-      const articles = article.value.data[route.params.id - 1].attributes
-      // 处理markdown
+      const config = useRuntimeConfig()
+      const { data: article } = await useLazyAsyncData(route.params.id, () => $fetch(`${config.public.apiBase}/api/author-articles/${route.params.id}`))
+      // // 处理其他数据
+      const articles = article.value.data.attributes
+      // // 处理markdown
       const md = new MarkdownIt()
-      const result = md.render(article.value.data[route.params.id - 1].attributes.articleText)
+      const result = md.render(article.value.data.attributes.articleText)
       const lines = result.split('\n')
       const regex = /<[hH][1-6]>.*?<\/[hH][1-6]>/g
       const toc = []

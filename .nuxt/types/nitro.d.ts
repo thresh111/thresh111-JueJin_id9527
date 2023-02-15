@@ -2,6 +2,12 @@
 declare module 'nitropack' {
   type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T
   interface InternalApi {
+    '/api/UN-author-articles/:id': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/UN-author-articles/[id].get').default>>
+    }
+    '/api/releatedArticleList': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/releatedArticleList.get').default>>
+    }
     '/api/nav-lists': {
       'get': Awaited<ReturnType<typeof import('../../server/api/nav-lists.get').default>>
     }
@@ -10,9 +16,6 @@ declare module 'nitropack' {
     }
     '/api/authorList': {
       'get': Awaited<ReturnType<typeof import('../../server/api/authorList.get').default>>
-    }
-    '/api/articles': {
-      'get': Awaited<ReturnType<typeof import('../../server/api/articles.get').default>>
     }
     '/api/articleListChange': {
       'default': Awaited<ReturnType<typeof import('../../server/api/articleListChange').default>>

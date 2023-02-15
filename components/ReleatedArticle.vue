@@ -1,31 +1,43 @@
 <template>
-  <el-card class="box-card">
-    <template #header>
+  <div class="box-card">
+    <div class="#header">
       <div class="card-header">
-        <span>相关文章</span>
-        <!-- <el-button class="button" text>Operation button</el-button> -->
+        相关文章
       </div>
-    </template>
-    <div class="text item">
-      <el-row class="row-bg">
-        <el-link target="_blank">
-          点击
-        </el-link>
-      </el-row>
-      <el-row class="row-bg">
-        <el-link target="_blank">
-          点击
-        </el-link>
-      </el-row>
     </div>
-  </el-card>
+    <div v-for="(item,id) in releatedArticleList.data" :key="item.id" class="text item">
+      <div v-if="id < 5">
+        <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" target="_blank">
+          <div class="item">
+            {{ item.attributes.articleTitle }}
+          </div>
+        </nuxt-link>
+      </div>
+    </div>
+  </div>
 </template>
-
-<style>
+<script lang="ts" setup>
+async function getReleatedArticleList () {
+  const { data } = await useAsyncData('releatedArticleList', () => $fetch('/api/releatedArticleList'))
+  if (data.value.data[0].attributes.show !== true) {
+    ElMessage({
+      showClose: true,
+      message: 'Advertise 获取失败!',
+      type: 'error'
+    })
+  }
+  return data.value
+}
+const releatedArticleList = await getReleatedArticleList()
+</script>
+<style lang="scss" scoped>
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 1.333rem 0;
+  margin: 0 1.667rem;
+  font-size: 16px;
+  line-height: 2rem;
+  font-weight: 500;
+  border-bottom: 1px solid #e4e6eb;
 }
 
 .text {
@@ -34,16 +46,20 @@
 
 .item {
   margin-bottom: 18px;
+  margin-top: 18px;
+  margin-left: 10px;
+  margin-right: 18px;
+  line-height: 22px;
+  font-size: 1.167rem;
 }
 
 .box-card {
-  width: 480px;
+  width: 25rem;
+  border-radius: 5px;
+  height: auto;
+  background-color: white;
 }
-
-.el-row {
-  margin-bottom: 20px;
-}
-.el-row:last-child {
-  margin-bottom: 0;
+a {
+  color: black;
 }
 </style>

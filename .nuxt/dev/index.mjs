@@ -21,7 +21,7 @@ import unstorage_47drivers_47fs from 'file://C:/Time-is-Going/thresh111-JueJin_i
 import defu from 'file://C:/Time-is-Going/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+defu@6.1.2/node_modules/defu/dist/defu.mjs';
 import { toRouteMatcher, createRouter } from 'file://C:/Time-is-Going/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+radix3@1.0.0/node_modules/radix3/dist/index.mjs';
 
-const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{}};
+const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"apiBase":"http://127.0.0.1:1337"}};
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _runtimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 const getEnv = (key) => {
@@ -484,20 +484,22 @@ const errorHandler = (async function errorhandler(error, event) {
   event.node.res.end(await res.text());
 });
 
+const _lazy_uDJB6q = () => Promise.resolve().then(function () { return _id__get; });
+const _lazy_PUQyoP = () => Promise.resolve().then(function () { return releatedArticleList_get$1; });
 const _lazy_aLQMzM = () => Promise.resolve().then(function () { return navLists_get$1; });
 const _lazy_CTR8Wi = () => Promise.resolve().then(function () { return header_get$1; });
 const _lazy_3bUZxv = () => Promise.resolve().then(function () { return authorList_get$1; });
-const _lazy_nb1UCv = () => Promise.resolve().then(function () { return articles_get$1; });
 const _lazy_CzDgem = () => Promise.resolve().then(function () { return articleListChange$1; });
 const _lazy_pULJ9P = () => Promise.resolve().then(function () { return articleList_get$1; });
 const _lazy_DrxtAr = () => Promise.resolve().then(function () { return advertiseImg_get$1; });
 const _lazy_TA5LdT = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
+  { route: '/api/UN-author-articles/:id', handler: _lazy_uDJB6q, lazy: true, middleware: false, method: "get" },
+  { route: '/api/releatedArticleList', handler: _lazy_PUQyoP, lazy: true, middleware: false, method: "get" },
   { route: '/api/nav-lists', handler: _lazy_aLQMzM, lazy: true, middleware: false, method: "get" },
   { route: '/api/header', handler: _lazy_CTR8Wi, lazy: true, middleware: false, method: "get" },
   { route: '/api/authorList', handler: _lazy_3bUZxv, lazy: true, middleware: false, method: "get" },
-  { route: '/api/articles', handler: _lazy_nb1UCv, lazy: true, middleware: false, method: "get" },
   { route: '/api/articleListChange', handler: _lazy_CzDgem, lazy: true, middleware: false, method: undefined },
   { route: '/api/articleList', handler: _lazy_pULJ9P, lazy: true, middleware: false, method: "get" },
   { route: '/api/advertiseImg', handler: _lazy_DrxtAr, lazy: true, middleware: false, method: "get" },
@@ -628,6 +630,20 @@ const errorDev = /*#__PURE__*/Object.freeze({
   template: template
 });
 
+const _id__get = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const releatedArticleList_get = defineEventHandler(async () => {
+  const data = await (await fetch("http://127.0.0.1:1337/api/releated-article-lists/")).json();
+  return data;
+});
+
+const releatedArticleList_get$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: releatedArticleList_get
+});
+
 const navLists_get = defineEventHandler(async () => {
   const data = await (await fetch("http://127.0.0.1:1337/api/nav-lists")).json();
   return data;
@@ -656,16 +672,6 @@ const authorList_get = defineEventHandler(async () => {
 const authorList_get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   default: authorList_get
-});
-
-const articles_get = defineEventHandler(async () => {
-  const data = await (await fetch("http://127.0.0.1:1337/api/author-articles")).json();
-  return data;
-});
-
-const articles_get$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: articles_get
 });
 
 const articleListChange = defineEventHandler(async () => {

@@ -11,18 +11,24 @@ export default defineNuxtConfig({
       // tunnel: 'laughing-penguin'
     }
   },
-  vite: {
-    server: {
-      proxy: {
-        '/api': {
-          target: 'http://127.0.0.1:1337', // 这里是接口地址
-          changeOrigin: true
-        },
-        '^/api': {
-          target: 'http://127.0.0.1:1337', // 这里是接口地址
-          changeOrigin: true
-        }
-      }
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_APP_SERVICE_URL
     }
   }
+  // 废弃, 保存待用
+  // vite: {
+  //   server: {
+  //     proxy: {
+  //       '/api': {
+  //         target: 'http://127.0.0.1:1337', // 这里是接口地址
+  //         changeOrigin: true
+  //       },
+  //       '^/api': {
+  //         target: 'http://127.0.0.1:1337', // 这里是接口地址
+  //         changeOrigin: true
+  //       }
+  //     }
+  //   }
+  // }
 })
