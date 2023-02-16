@@ -29,6 +29,27 @@ declare module 'nitropack' {
     '/__nuxt_error': {
       'default': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
     }
+    '/api/_content/query/:qid/**:params': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/query').default>>
+    }
+    '/api/_content/query/:qid': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/query').default>>
+    }
+    '/api/_content/query': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/query').default>>
+    }
+    '/api/_content/cache.json': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/cache').default>>
+    }
+    '/api/_content/navigation/:qid/**:params': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/navigation').default>>
+    }
+    '/api/_content/navigation/:qid': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/navigation').default>>
+    }
+    '/api/_content/navigation': {
+      'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/navigation').default>>
+    }
   }
 }
 declare global {

@@ -31,12 +31,8 @@
             </div>
             <div class="author-article">
               <div ref="markdownContent">
-                <div class="MarkdownText" v-html="result" />
-                <!-- <div class="MarkdownText">
-                  <ContentRenderer :value="articles.articleText">
-                    <ContentRendererMarkdown :value="articles.articleText" />
-                  </ContentRenderer>
-                </div> -->
+                <!-- <div v-dompurify-html="result" class="MarkdownText" /> -->
+                <v-md-preview ref="preview" :text="articles.articleText" />
                 <!-- {{ markdownoo }} -->
               </div>
             </div>
@@ -102,7 +98,22 @@
             <div class="article-directory aside-size">
               <span>目录</span>
               <el-divider />
-              <div v-html="tocs" />
+              <div>
+                <div
+                  v-for="anchor in titles"
+                  :key="anchor"
+                  :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }"
+                  @click="handleAnchorClick(anchor)"
+                >
+                  <a style="cursor: pointer">{{ anchor.title }}</a>
+                </div>
+                <!-- <ul>
+                  <li v-for="heading in headings" :key="heading">
+                    <a :href="`#${heading.slug}`">{{ heading.text }}</a>
+                  </li>
+                </ul> -->
+              </div>
+              <!-- <div v-dompurify-html="tocs" /> -->
             </div>
           </el-space>
         </el-aside>
@@ -113,6 +124,9 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
+import MarkdownItAnchor from 'markdown-it-anchor'
+const md = new MarkdownIt()
+md.use(MarkdownItAnchor)
 
 export default {
   async setup () {
@@ -120,57 +134,77 @@ export default {
       const route = useRoute()
       const config = useRuntimeConfig()
       const { data: article } = await useLazyAsyncData(route.params.id, () => $fetch(`${config.public.apiBase}/api/author-articles/${route.params.id}`))
-      // // 处理其他数据
+      // 处理其他数据
       const articles = article.value.data.attributes
-      // // 处理markdown
-      const md = new MarkdownIt()
-      const result = md.render(article.value.data.attributes.articleText)
-      const lines = result.split('\n')
-      const regex = /<[hH][1-6]>.*?<\/[hH][1-6]>/g
-      const toc = []
-      for (let i = 0; i < lines.length; i++) {
-        toc[i] = regex.exec(lines[i])
-      }
-      const tocs = toc.filter(line => line !== null)
-      return { result, tocs, articles }
+      // const lines = result.split('\n')
+      // const regex = /<[hH][1-6]>.*?<\/[hH][1-6]>/g
+      // const toc = []
+      // for (let i = 0; i < lines.length; i++) {
+      //   toc[i] = regex.exec(lines[i])
+      // }
+      // const tocs = toc.filter(line => line !== null)
+      // return { result, tocs, articles }
+      const content = articles.articleText
+      const tokens = md.parse(content, {})
+      // function tokendss () {
+      //   tokens.filter(token => token.type === 'heading_open').map((token) => {
+      //     return {
+      //       level: parseInt(token.tag.slice(1), 10),
+      //       text: token.children[0].content,
+      //       slug: token.attrGet('id')
+      //     }
+      //   })
+      //   return tokens
+      // }
+      // const headings = tokendss()
+      return { articles }
     }
-    const { result, tocs, articles } = await markdown()
-    return { result, tocs, articles }
+    // const { result, tocs, articles } = await markdown()
+    const { articles } = await markdown()
+    // return { result, tocs, articles }
+    // console.log(headings)
+    return { articles }
   },
   data () {
     return {
-      liked: false,
-      content: '# markdown: &nbsp #  Nuxt 3 Minimal Starter Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more. ## Setup Make sure to install the dependencies: ```bash # yarn yarn install # npm npm install # pnpm pnpm install ``` ## Development Server Start the development server on http://localhost:3000 ```bash npm run dev ``` 1. 解决基本布局问题，文章、作者信息和文章目录的布局 ✔使用eslint和prettier</br> ✔已使用element-plus自动导入</br> ✔2月6日凌晨完成了主页文章部分的菜单UI</br> ✔计划2月6日完成文章部分的UI。</br> ',
       bg_color: '#1D7DFA',
       ft_color: '#fff',
-      subscribe: '关注',
-      // message,
-      str: '# 标题',
-      catalog: ''
+      subscribe: '',
+      titles: []
     }
   },
+  mounted () {
+    const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6')
+    const titles = Array.from(anchors).filter(title => !!title.innerText.trim())
+
+    if (!titles.length) {
+      this.titles = []
+      return
+    }
+
+    const hTags = Array.from(new Set(titles.map(title => title.tagName))).sort()
+
+    this.titles = titles.map(el => ({
+      title: el.innerText,
+      lineIndex: el.getAttribute('data-v-md-line'),
+      indent: hTags.indexOf(el.tagName)
+    }))
+  },
   methods: {
-    // 生成目录
-    // generate_catalog(){
-    // this.$nextTick(() => {
-    //   const article_content = this.$refs.markdownContent;
-    //   const nodes = ["h1", "h2", "h3"];
-    //   let titles = [];
-    //   article_content.childNodes.forEach((e, index) => {
-    //     if (nodes.includes(e.nodeName)) {
-    //       const id = "header-" + index;
-    //       e.setAttribute("id", id);
-    //       titles.push({
-    //         id: id,
-    //         title: e.innerHTML,
-    //         level: Number(e.nodeName.substring(1, 2)),
-    //         nodeName: e.nodeName
-    //       });
-    //     }
-    //   });
-    //   this.catalog = titles;
-    // });
-    // },
+    handleAnchorClick (anchor) {
+      const { preview } = this.$refs
+      const { lineIndex } = anchor
+
+      const heading = preview.$el.querySelector(`[data-v-md-line="${lineIndex}"]`)
+
+      if (heading) {
+        preview.scrollToTarget({
+          target: heading,
+          scrollContainer: window,
+          top: 60
+        })
+      }
+    },
     favor () {
       this.liked = !this.liked
       if (this.liked) {

@@ -10,9 +10,12 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/head/runtime/lib/vueuse-head.plugin").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/pages/runtime/plugins/router").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/plugins/ws").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+devtools@0.1.2_nuxt@3.2.0/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client").default> &
   InjectionType<typeof import("../element-plus-teleports.plugin").default> &
-  InjectionType<typeof import("../element-plus-injection.plugin").default>
+  InjectionType<typeof import("../element-plus-injection.plugin").default> &
+  InjectionType<typeof import("../../plugins/v-md-editor").default> &
+  InjectionType<typeof import("../../plugins/vue-dompurify-html").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
