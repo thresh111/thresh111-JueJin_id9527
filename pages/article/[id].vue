@@ -31,9 +31,8 @@
             </div>
             <div class="author-article">
               <div ref="markdownContent">
-                <!-- <div v-dompurify-html="result" class="MarkdownText" /> -->
-                <v-md-preview ref="preview" :text="articles.articleText" />
-                <!-- {{ markdownoo }} -->
+                <div v-dompurify-html="result" class="markdown-body" />
+                <!-- <v-md-preview ref="preview" :text="articles.articleText" /> -->
               </div>
             </div>
           </div>
@@ -66,12 +65,12 @@
                 <div class="subscribe">
                   <el-button
                     class="my_button"
-                    :style="{backgroundColor:bg_color, color: ft_color,}"
+                    style="background-color: #1D7DFA; color: #ffffff"
                     @click="favor"
                     @mouseenter="change()"
                     @mouseleave="goback()"
                   >
-                    {{ subscribe }}
+                    关注
                   </el-button>
                 </div>
                 <div class="message">
@@ -98,22 +97,13 @@
             <div class="article-directory aside-size">
               <span>目录</span>
               <el-divider />
-              <div>
-                <div
-                  v-for="anchor in titles"
-                  :key="anchor"
-                  :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }"
-                  @click="handleAnchorClick(anchor)"
-                >
-                  <a style="cursor: pointer">{{ anchor.title }}</a>
+              <div style="display: table;">
+                <div v-for="(heading, i) in tocs" :key="i + ''" class="catalog-item" :style="{ padding: `10px 0 10px ${(Number(heading[1])-1) * 10}px` }">
+                  <nuxt-link style="font-size: 1.167rem; pointer; color: black; margin-left: 20px" :to="`#${heading[2]}`">
+                    {{ heading[3] }}
+                  </nuxt-link>
                 </div>
-                <!-- <ul>
-                  <li v-for="heading in headings" :key="heading">
-                    <a :href="`#${heading.slug}`">{{ heading.text }}</a>
-                  </li>
-                </ul> -->
               </div>
-              <!-- <div v-dompurify-html="tocs" /> -->
             </div>
           </el-space>
         </el-aside>
@@ -124,10 +114,8 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
+import 'github-markdown-css'
 import MarkdownItAnchor from 'markdown-it-anchor'
-const md = new MarkdownIt()
-md.use(MarkdownItAnchor)
-
 export default {
   async setup () {
     async function markdown () {
@@ -136,75 +124,22 @@ export default {
       const { data: article } = await useLazyAsyncData(route.params.id, () => $fetch(`${config.public.apiBase}/api/author-articles/${route.params.id}`))
       // 处理其他数据
       const articles = article.value.data.attributes
-      // const lines = result.split('\n')
-      // const regex = /<[hH][1-6]>.*?<\/[hH][1-6]>/g
-      // const toc = []
-      // for (let i = 0; i < lines.length; i++) {
-      //   toc[i] = regex.exec(lines[i])
-      // }
-      // const tocs = toc.filter(line => line !== null)
-      // return { result, tocs, articles }
-      const content = articles.articleText
-      const tokens = md.parse(content, {})
-      // function tokendss () {
-      //   tokens.filter(token => token.type === 'heading_open').map((token) => {
-      //     return {
-      //       level: parseInt(token.tag.slice(1), 10),
-      //       text: token.children[0].content,
-      //       slug: token.attrGet('id')
-      //     }
-      //   })
-      //   return tokens
-      // }
-      // const headings = tokendss()
-      return { articles }
+      const md = new MarkdownIt()
+      md.use(MarkdownItAnchor)
+      const result = md.render(article.value.data.attributes.articleText)
+      const lines = result.split('\n')
+      const regex = /<h([1-6])\s+id="([^"]+)"[^>]*>(.+?)<\/h\1>/gi
+      const toc = []
+      for (let i = 0; i < lines.length; i++) {
+        toc[i] = regex.exec(lines[i])
+      }
+      const tocs = toc.filter(line => line !== null)
+      return { result, tocs, articles }
     }
-    // const { result, tocs, articles } = await markdown()
-    const { articles } = await markdown()
-    // return { result, tocs, articles }
-    // console.log(headings)
-    return { articles }
-  },
-  data () {
-    return {
-      bg_color: '#1D7DFA',
-      ft_color: '#fff',
-      subscribe: '',
-      titles: []
-    }
-  },
-  mounted () {
-    const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6')
-    const titles = Array.from(anchors).filter(title => !!title.innerText.trim())
-
-    if (!titles.length) {
-      this.titles = []
-      return
-    }
-
-    const hTags = Array.from(new Set(titles.map(title => title.tagName))).sort()
-
-    this.titles = titles.map(el => ({
-      title: el.innerText,
-      lineIndex: el.getAttribute('data-v-md-line'),
-      indent: hTags.indexOf(el.tagName)
-    }))
+    const { result, tocs, articles } = await markdown()
+    return { result, tocs, articles }
   },
   methods: {
-    handleAnchorClick (anchor) {
-      const { preview } = this.$refs
-      const { lineIndex } = anchor
-
-      const heading = preview.$el.querySelector(`[data-v-md-line="${lineIndex}"]`)
-
-      if (heading) {
-        preview.scrollToTarget({
-          target: heading,
-          scrollContainer: window,
-          top: 60
-        })
-      }
-    },
     favor () {
       this.liked = !this.liked
       if (this.liked) {
@@ -237,11 +172,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.catalog-item {
+  text-align: left;
+}
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
 .readsum {
   margin-left: 10px;
-}
-.MarkdownText{
-  font-size: 16px;
 }
 .goodOfRead {
   box-sizing: border-box;

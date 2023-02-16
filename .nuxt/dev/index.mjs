@@ -3648,7 +3648,7 @@ const _lazy_3bUZxv = () => Promise.resolve().then(function () { return authorLis
 const _lazy_CzDgem = () => Promise.resolve().then(function () { return articleListChange$1; });
 const _lazy_pULJ9P = () => Promise.resolve().then(function () { return articleList_get$1; });
 const _lazy_DrxtAr = () => Promise.resolve().then(function () { return advertiseImg_get$1; });
-const _lazy_TA5LdT = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_Pd4HSk = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
   { route: '/api/UN-author-articles/:id', handler: _lazy_uDJB6q, lazy: true, middleware: false, method: "get" },
@@ -3659,7 +3659,7 @@ const handlers = [
   { route: '/api/articleListChange', handler: _lazy_CzDgem, lazy: true, middleware: false, method: undefined },
   { route: '/api/articleList', handler: _lazy_pULJ9P, lazy: true, middleware: false, method: "get" },
   { route: '/api/advertiseImg', handler: _lazy_DrxtAr, lazy: true, middleware: false, method: "get" },
-  { route: '/__nuxt_error', handler: _lazy_TA5LdT, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_Pd4HSk, lazy: true, middleware: false, method: undefined },
   { route: '/api/_content/query/:qid/**:params', handler: _91vcE7, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query/:qid', handler: _91vcE7, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query', handler: _91vcE7, lazy: false, middleware: false, method: "get" },
@@ -3667,7 +3667,7 @@ const handlers = [
   { route: '/api/_content/navigation/:qid/**:params', handler: _sMfMmG, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation/:qid', handler: _sMfMmG, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation', handler: _sMfMmG, lazy: false, middleware: false, method: "get" },
-  { route: '/**', handler: _lazy_TA5LdT, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_Pd4HSk, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

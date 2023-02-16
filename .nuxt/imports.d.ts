@@ -9,4 +9,4 @@ export { useContentHelpers } from '../node_modules/.pnpm/registry.npmmirror.com+
 export { useContentHead } from '../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/head';
 export { withContentBase, useUnwrap, useContentDisabled as useContentState, useContentDisabled as useContent } from '../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/utils';
 export { fetchContentNavigation } from '../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/navigation';
-export { definePageMeta } from '../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/pages/runtime/composables';
+export { definePageMeta } from '../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/pages/runtime/composables';

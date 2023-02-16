@@ -27,7 +27,7 @@ declare module 'nitropack' {
       'get': Awaited<ReturnType<typeof import('../../server/api/advertiseImg.get').default>>
     }
     '/__nuxt_error': {
-      'default': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
+      'default': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
     }
     '/api/_content/query/:qid/**:params': {
       'get': Awaited<ReturnType<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/server/api/query').default>>
@@ -53,8 +53,8 @@ declare module 'nitropack' {
   }
 }
 declare global {
-  const __buildAssetsURL: typeof import('C:/Time-is-Going/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/core/runtime/nitro/paths')['buildAssetsURL']
-  const __publicAssetsURL: typeof import('C:/Time-is-Going/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_dnx7jaqo7gnv2zlvo7tmz5aaau/node_modules/nuxt/dist/core/runtime/nitro/paths')['publicAssetsURL']
+  const __buildAssetsURL: typeof import('C:/Time-is-Going/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/core/runtime/nitro/paths')['buildAssetsURL']
+  const __publicAssetsURL: typeof import('C:/Time-is-Going/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/core/runtime/nitro/paths')['publicAssetsURL']
   const appendHeader: typeof import('h3')['appendHeader']
   const appendHeaders: typeof import('h3')['appendHeaders']
   const appendResponseHeader: typeof import('h3')['appendResponseHeader']
