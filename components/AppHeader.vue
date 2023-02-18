@@ -8,6 +8,7 @@
             alt=""
             class="logo-img"
           >
+          <img src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/6c61ae65d1c41ae8221a670fa32d05aa.svg" alt="稀土掘金" class="mobile">
         </a>
         <nav class="main-nav">
           <ul class="nav-list">
@@ -15,8 +16,8 @@
               <ClientOnly>
                 <el-menu
                   :default-active="activeIndex"
-                  class="el-menu-demo"
                   mode="horizontal"
+                  class="HomeHeader"
                   :ellipsis="false"
                   @select="handleSelect"
                 >
@@ -29,14 +30,37 @@
                   </el-menu-item>
                 </el-menu>
               </ClientOnly>
-              <div class="item">
-                <img
-                  style="max-width: 115px; vertical-align: middle"
-                  src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7482b3ad2cd14edda31f05399c2ae759~tplv-k3u1fbpfcp-zoom-1.image"
-                  alt=""
-                >
+              <div>
+                <div class="item">
+                  <img
+                    style="max-width: 115px; vertical-align: middle ;"
+                    src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7482b3ad2cd14edda31f05399c2ae759~tplv-k3u1fbpfcp-zoom-1.image"
+                    alt=""
+                  >
+                </div>
               </div>
             </li>
+            <ClientOnly>
+              <el-dropdown class="MenuMobile" style="order: 99;">
+                <span class="el-dropdown-link">
+                  {{ headerList[0].title }}
+                  <el-icon class="el-icon--right">
+                    <arrow-down />
+                  </el-icon>
+                </span>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item
+                      v-for="item in headerList"
+                      :key="item.id"
+                      :index="'{item.id}'"
+                    >
+                      {{ item.title }}
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+            </ClientOnly>
             <ul class="right-side-nav">
               <li class="search-add">
                 <ul class="search-add-ul">
@@ -128,6 +152,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { ArrowDown } from '@element-plus/icons-vue'
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -149,14 +174,24 @@ const headerList = await getHeaderList()
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/main.scss';
+.example-showcase .el-dropdown-link {
+  cursor: pointer;
+  color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
+}
 .main-header {
+  transform: translateZ(0);
   height: 60px;
-  background-color: #fff;
+  width: 100%;
+  // background-color: var(--color-dark-components-color);
   .container {
     display: flex;
     height: 100%;
     max-width: 1440px;
     align-items: center;
+    position: relative;
     margin: auto;
     .logo {
       margin-right: 1rem;
@@ -168,12 +203,26 @@ const headerList = await getHeaderList()
         display: block;
         width: 107px;
         height: 22px;
+        @include media-mobile {
+          display: none;
+        }
+      }
+      .mobile {
+        display: none;
+        height: 2rem;
+        @include media-mobile {
+          display: block;
+        }
       }
     }
     .main-nav {
       height: 60px;
-      flex: 1 0 auto;
+      width: 100%;
+      flex: 1 0;
       line-height: normal;
+      .nav {
+        display: block;
+      }
       .nav-list {
         display: flex;
         align-items: center;
@@ -185,12 +234,57 @@ const headerList = await getHeaderList()
         .main-nav-list {
           display: flex;
           order: 99;
+          .HomeHeader {
+            display: flex;
+            @include media-mobile {
+             display: flex;
+            }
+            @include media-ipad {
+             display: none;
+            }
+            @include media-between-mini-and-normal-mobile {
+              display: none;
+            }
+            @include media-mini-mobile {
+              display: none;
+            }
+          }
           .item {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 0 1rem;
           }
+          @include media-mobile {
+            display: none;
+          }
+
+          @include media-ipad {
+            display: none;
+          }
+
+          @include media-between-mini-and-normal-mobile {
+            display: none;
+          }
+
+          @include media-mini-mobile {
+            display: none;
+          }
+        }
+        .MenuMobile {
+            display: none;
+            @include media-mobile {
+             display: none;
+            }
+            @include media-ipad {
+             display: flex;
+            }
+            @include media-between-mini-and-normal-mobile {
+              display: flex;
+            }
+            @include media-mini-mobile {
+              display: flex;
+            }
         }
         .right-side-nav {
           display: flex;
@@ -221,7 +315,7 @@ const headerList = await getHeaderList()
                 cursor: pointer;
                 padding-left: 0;
                 .search-form {
-                  width: 260px;
+                  width: auto;
                   background-color: #fff;
                   display: flex;
                   align-items: center;
@@ -270,6 +364,9 @@ const headerList = await getHeaderList()
                 justify-content: center;
                 align-items: center;
                 position: relative;
+                @include media-mobile {
+                  display: none;
+                }
                 .add-group {
                   display: flex;
                   align-items: center;
@@ -291,6 +388,9 @@ const headerList = await getHeaderList()
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            @include media-mobile {
+              display: none;
+            }
             .vip-title {
               display: flex;
               align-items: center;
@@ -362,7 +462,11 @@ const headerList = await getHeaderList()
           }
         }
       }
+
     }
   }
+}
+ul {
+  padding: 0;
 }
 </style>

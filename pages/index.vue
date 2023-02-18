@@ -1,12 +1,15 @@
 <template>
   <div class="contain">
-    <AppNav />
-    <ArticleListMenu />
+    <HomeNav />
+    <HomeListArticleListMenu />
   </div>
 </template>
 
-<script lang='ts'>
+<script setup>
 </script>
 
 <style lang="scss" scoped>
+.contain {
+  position: relative;
+}
 </style>

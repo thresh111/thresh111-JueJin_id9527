@@ -16,7 +16,7 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
+<script lang="ts" setup scoped>
 async function getReleatedArticleList () {
   const { data } = await useAsyncData('releatedArticleList', () => $fetch('/api/releatedArticleList'))
   if (data.value.data[0].attributes.show !== true) {

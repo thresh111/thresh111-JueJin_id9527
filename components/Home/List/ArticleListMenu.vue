@@ -24,13 +24,15 @@
           </el-menu>
         </client-only>
         <el-main>
-          <ArticleList />
+          <div style="float: left;">
+            <HomeListArticleList />
+          </div>
         </el-main>
       </header>
-      <div class="rightBox">
-        <AppAdvertise />
-        <AppAuthor />
-      </div>
+      <aside class="rightBox">
+        <HomeSidebarAppAdvertise />
+        <HomeSidebarAppAuthor />
+      </aside>
     </div>
   </main>
 </template>
@@ -55,7 +57,8 @@ async function getArticleListTags () {
 const articleListChange = await getArticleListTags()
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+@import '@/assets/style/main.scss';
 .homeBody {
   position: relative;
   max-width: 960px;
@@ -66,11 +69,21 @@ const articleListChange = await getArticleListTags()
 
 .articleBody {
   margin: auto;
-  width: 700px;
+  width: 100%;
 }
 
 .listHeader {
-  border: 1px solid hsla(0, 0, 59.2, 0.1);
+  border: 1px solid hsla(0, 0%, 59.2%, 0.1%);
+  width: 58rem;
+  @include media-ipad {
+    width: 100%;
+  }
+  @include media-between-mini-and-normal-mobile {
+    width: 100%;
+  }
+  @include media-mini-mobile {
+    width: 100%;
+  }
 }
 
 .el-menu-item {
@@ -103,12 +116,22 @@ const articleListChange = await getArticleListTags()
 }
 
 .rightBox {
-    position: absolute;
-    width: 20rem;
-    height: 600px;
-    top: 0;
-    right: -125px;
-    z-index: 1;
+  position: absolute;
+  width: 20rem;
+  height: 600px;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  margin-left: 20px;
+  @include media-ipad {
+    display: none;
+  }
+  @include media-mini-mobile {
+    display: none;
+  }
+  @include media-between-mini-and-normal-mobile {
+    display: none;
+  }
 }
 .el-main {
   background-color: white;

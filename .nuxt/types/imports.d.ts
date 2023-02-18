@@ -376,6 +376,7 @@ declare global {
   const useAppConfig: typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/app')['useAppConfig']
   const useAsyncData: typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/app')['useAsyncData']
   const useAttrs: typeof import('vue')['useAttrs']
+  const useColorMode: typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxtjs+color-mode@3.2.0/node_modules/@nuxtjs/color-mode/dist/runtime/composables')['useColorMode']
   const useContent: typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']
   const useContentHead: typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']
   const useContentHelpers: typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']
@@ -797,6 +798,7 @@ declare module 'vue' {
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/app')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+nuxt@3.2.0_h5nqvx6zt657irmnd4ouaingse/node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useColorMode: UnwrapRef<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxtjs+color-mode@3.2.0/node_modules/@nuxtjs/color-mode/dist/runtime/composables')['useColorMode']>
     readonly useContent: UnwrapRef<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useContentHead: UnwrapRef<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']>
     readonly useContentHelpers: UnwrapRef<typeof import('../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+content@2.4.3/node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']>

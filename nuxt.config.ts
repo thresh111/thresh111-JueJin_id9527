@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
-  modules: ['@element-plus/nuxt', '@nuxt/devtools', '@nuxt/content'],
-  css: ['@/assets/style/main.css', '@/assets/reset.css', '@/assets/elementplus-reset.scss'],
+  modules: ['@element-plus/nuxt', 'nuxt-purgecss', '@nuxt/devtools', '@nuxt/content', '@nuxtjs/color-mode'],
+  css: ['@/assets/style/main.scss', '@/assets/reset.css', '@/assets/elementplus-reset.scss'],
   devtools: {
     enabled: true,
     vscode: {

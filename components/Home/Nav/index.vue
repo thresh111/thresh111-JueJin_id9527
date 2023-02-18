@@ -26,6 +26,7 @@ async function getNavList () {
 const navlist = await getNavList()
 </script>
 <style lang="scss" scoped>
+@import '@/assets/style/main.scss';
 .view-nav {
   left: 0;
   background-color: #fff;
@@ -50,6 +51,13 @@ const navlist = await getNavList()
     align-items: center;
     line-height: 1;
     position: relative;
+    left: 2rem;
+    @include media-between-mini-and-normal-mobile {
+      overflow-x: scroll;
+    }
+    @include media-mini-mobile {
+      overflow-x: scroll;
+    }
     .nav-item {
       height: 100%;
       align-items: center;
@@ -65,7 +73,10 @@ const navlist = await getNavList()
     .right {
       position: absolute;
       top: 0;
-      right: 0;
+      right: 4rem;
+      @include media-mini-mobile {
+        display: none;
+      }
     }
   }
 }
