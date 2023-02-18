@@ -120,29 +120,54 @@ import MarkdownIt from 'markdown-it'
 import 'github-markdown-css'
 import './article.scss'
 import MarkdownItAnchor from 'markdown-it-anchor'
+const md = new MarkdownIt()
+md.use(MarkdownItAnchor)
 export default {
   async setup() {
     async function markdown() {
       const route = useRoute()
-      const config = useRuntimeConfig()
-      const { data: article } = await useLazyAsyncData(route.params.id, () => $fetch(`${config.public.apiBase}/api/author-articles/${route.params.id}`))
-      // 处理其他数据
-      const articles = article.value.data.attributes
-      const md = new MarkdownIt()
-      md.use(MarkdownItAnchor)
-      const result = md.render(article.value.data.attributes.articleText)
-      const lines = result.split('\n')
-      const regex = /<h([1-6])\s+id="([^"]+)"[^>]*>(.+?)<\/h\1>/gi
-      const toc = []
-      for (let i = 0; i < lines.length; i++) {
-        toc[i] = regex.exec(lines[i])
-      }
-      const tocs = toc.filter(line => line !== null)
-      return { result, tocs, articles }
+      const { data: article } = await useLazyFetch('/api/articleList')
+      const articles = article.value.data[route.params.id - 1].attributes
+      // const result = md.render(articles.articleText)
+      console.log(articles.author)
+      return { articles }
     }
-    const { result, tocs, articles } = await markdown()
+    const article = await markdown()
+    const articles = article.articles
+    const result = md.render(articles.articleText)
+    const lines = result.split('\n')
+    const regex = /<h([1-6])\s+id="([^"]+)"[^>]*>(.+?)<\/h\1>/gi
+    const toc = []
+    for (let i = 0; i < lines.length; i++) {
+      toc[i] = regex.exec(lines[i])
+    }
+    const tocs = toc.filter(line => line !== null)
+    // return { result, tocs, articles }
+    console.log('-------')
+    console.log(articles.author)
     return { result, tocs, articles }
   },
+  //   async function markdown() {
+  //     const route = useRoute()
+  //     const config = useRuntimeConfig()
+  //     const { data: article } = await useLazyAsyncData(route.params.id, () => $fetch(`${config.public.apiBase}/api/articles/${route.params.id}`))
+  //     // 处理其他数据
+  //     const articles = article.value.data.attributes
+  //     const md = new MarkdownIt()
+  //     md.use(MarkdownItAnchor)
+  //     const result = md.render(article.value.data.attributes.articleText)
+  //     const lines = result.split('\n')
+  //     const regex = /<h([1-6])\s+id="([^"]+)"[^>]*>(.+?)<\/h\1>/gi
+  //     const toc = []
+  //     for (let i = 0; i < lines.length; i++) {
+  //       toc[i] = regex.exec(lines[i])
+  //     }
+  //     const tocs = toc.filter(line => line !== null)
+  //     return { result, tocs, articles }
+  //   }
+  //   const { result, tocs, articles } = await markdown()
+  //   return { result, tocs, articles }
+  // },
   methods: {
     favor() {
       this.liked = !this.liked
