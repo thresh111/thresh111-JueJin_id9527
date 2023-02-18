@@ -2,10 +2,10 @@
   <div class="box-card">
     <div class="#header">
       <div class="card-header">
-        相关文章
+        <span>相关文章</span>
       </div>
     </div>
-    <div v-for="(item,id) in releatedArticleList.data" :key="item.id" class="text item">
+    <div v-for="(item, id) in releatedArticleList.data" :key="item.id" class="text item">
       <div v-if="id < 5">
         <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" target="_blank">
           <div class="item">
@@ -17,16 +17,18 @@
   </div>
 </template>
 <script lang="ts" setup scoped>
-async function getReleatedArticleList () {
-  const { data } = await useAsyncData('releatedArticleList', () => $fetch('/api/releatedArticleList'))
-  if (data.value.data[0].attributes.show !== true) {
-    ElMessage({
-      showClose: true,
-      message: 'Advertise 获取失败!',
-      type: 'error'
-    })
-  }
-  return data.value
+async function getReleatedArticleList() {
+  // const { data: Ad } = await useLazyFetch('/api/releatedArticleList')
+  const { data: Ad } = await useAsyncData('releatedArticleList', () => $fetch('/api/releatedArticleList'))
+  // if (Ad.value.data[0].attributes.show !== true) {
+  //   ElMessage({
+  //     showClose: true,
+  //     message: 'Advertise 获取失败!',
+  //     type: 'error'
+  //   })
+  // }
+  console.log(Ad.value)
+  return Ad.value
 }
 const releatedArticleList = await getReleatedArticleList()
 </script>
@@ -59,6 +61,7 @@ const releatedArticleList = await getReleatedArticleList()
   height: auto;
   background-color: white;
 }
+
 a {
   color: black;
 }
