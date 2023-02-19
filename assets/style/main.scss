@@ -62,7 +62,7 @@ body {
      .main-header .container .main-nav .nav-list .MenuMobile {
       display: none;
      }
-     .articleBody {
+     .articleMainBody {
       left: 0;
      }
    }
@@ -92,8 +92,11 @@ body {
       .aside-author {
         display: none;
       }
-     .articleBody {
+     .articleMainBody {
         left: 0;
+     }
+     .view-nav .nav-list .nav-item {
+      display: none;
      }
    }
  }
@@ -138,7 +141,7 @@ body {
      .aside-author {
        display: none;
      }
-     .articleBody {
+     .articleMainBody {
       width: 100%;
       left: 0;
      }

@@ -116,11 +116,9 @@ const articleListChange = await getArticleListTags()
 .rightBox {
   position: absolute;
   width: 20rem;
-  height: 600px;
   top: 0;
-  right: 0;
+  right: -0.5rem;
   z-index: 1;
-  margin-left: 20px;
   @include media-ipad {
     display: none;
   }

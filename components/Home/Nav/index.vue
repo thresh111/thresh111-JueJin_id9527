@@ -51,7 +51,7 @@ const navlist = await getNavList()
     align-items: center;
     line-height: 1;
     position: relative;
-    left: 2rem;
+    left: 1rem;
     @include media-between-mini-and-normal-mobile {
       overflow-x: scroll;
     }
@@ -75,6 +75,9 @@ const navlist = await getNavList()
       top: 0;
       right: 4rem;
       @include media-mini-mobile {
+        display: none;
+      }
+      @include media-between-mini-and-normal-mobile {
         display: none;
       }
     }
