@@ -1,6 +1,25 @@
 export default defineNuxtConfig({
-  modules: ['@element-plus/nuxt', 'nuxt-purgecss', '@nuxt/devtools', '@nuxt/content', '@nuxtjs/color-mode'],
-  css: ['@/assets/style/main.scss', '@/assets/reset.css', '@/assets/elementplus-reset.scss'],
+  modules: [
+    '@element-plus/nuxt',
+    'nuxt-purgecss',
+    '@nuxt/devtools',
+    '@nuxtjs/color-mode'
+  ],
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '-mode',
+    storageKey: 'nuxt-color-mode'
+  },
+  css: [
+    '@/assets/style/main.scss',
+    '@/assets/reset.css',
+    '@/assets/elementplus-reset.scss'
+  ],
   devtools: {
     enabled: true,
     vscode: {
