@@ -58,8 +58,13 @@
             </div>
             <div class="button">
               <div class="subscribe">
-                <el-button class="my_button" style="background-color: #1D7DFA; color: #ffffff" @click="favor"
-                  @mouseenter="change()" @mouseleave="goback()">
+                <el-button
+                  class="my_button"
+                  style="background-color: #1D7DFA; color: #ffffff"
+                  @click="favor"
+                  @mouseenter="change()"
+                  @mouseleave="goback()"
+                >
                   关注
                 </el-button>
               </div>
@@ -77,8 +82,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" class="iocn like">
                   <g fill="none" fill-rule="evenodd" transform="translate(0 .57)">
                     <ellipse cx="12.5" cy="12.57" fill="#E1EFFF" rx="12.5" ry="12.57" />
-                    <path fill="#7BB9FF"
-                      d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z" />
+                    <path
+                      fill="#7BB9FF"
+                      d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z"
+                    />
                   </g>
                 </svg>
                 <span class="content">{{ articles.good }}</span>
@@ -87,8 +94,10 @@
                 <svg width="25" height="25" viewBox="0 0 25 25" class="view icon">
                   <g fill="none" fill-rule="evenodd">
                     <circle cx="12.5" cy="12.5" r="12.5" fill="#E1EFFF" />
-                    <path fill="#7BB9FF"
-                      d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z" />
+                    <path
+                      fill="#7BB9FF"
+                      d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z"
+                    />
                   </g>
                 </svg>
                 <span class="content">{{ articles.view }}</span>
@@ -100,10 +109,18 @@
             <span>目录</span>
             <el-divider />
             <div style="display: table;">
-              <div v-for="(heading, i) in tocs" :key="i + ''" class="catalog-item"
-                :style="{ padding: `10px 0 10px ${(Number(heading[1]) - 1) * 10}px` }">
-                <nuxt-link active-class exact-active-class
-                  style="font-size: 1.167rem; pointer; color: black; margin-left: 20px" :to="`#${heading[2]}`">
+              <div
+                v-for="(heading, i) in tocs"
+                :key="i + ''"
+                class="catalog-item"
+                :style="{ padding: `10px 0 10px ${(Number(heading[1]) - 1) * 10}px` }"
+              >
+                <nuxt-link
+                  active-class
+                  exact-active-class
+                  style="font-size: 1.167rem; pointer; color: black; margin-left: 20px"
+                  :to="`#${heading[2]}`"
+                >
                   {{ heading[3] }}
                 </nuxt-link>
               </div>
@@ -123,13 +140,12 @@ import MarkdownItAnchor from 'markdown-it-anchor'
 const md = new MarkdownIt()
 md.use(MarkdownItAnchor)
 export default {
-  async setup() {
-    async function markdown() {
+  async setup () {
+    async function markdown () {
       const route = useRoute()
       const { data: article } = await useLazyFetch('/api/articleList')
       const articles = article.value.data[route.params.id - 1].attributes
       // const result = md.render(articles.articleText)
-      console.log(articles.author)
       return { articles }
     }
     const article = await markdown()
@@ -143,8 +159,6 @@ export default {
     }
     const tocs = toc.filter(line => line !== null)
     // return { result, tocs, articles }
-    console.log('-------')
-    console.log(articles.author)
     return { result, tocs, articles }
   },
   //   async function markdown() {
@@ -169,7 +183,7 @@ export default {
   //   return { result, tocs, articles }
   // },
   methods: {
-    favor() {
+    favor () {
       this.liked = !this.liked
       if (this.liked) {
         this.subscribe = '已关注'
@@ -181,11 +195,11 @@ export default {
         this.ft_color = '#fff'
       }
     },
-    change() {
+    change () {
       this.bg_color = '#FFFFFF'
       this.ft_color = '#0000F0'
     },
-    goback() {
+    goback () {
       if (this.liked) {
         this.bg_color = '#FFFFFF'
         this.ft_color = '#00000'
