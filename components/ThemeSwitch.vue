@@ -18,7 +18,7 @@
 </template>>
 <script setup>
 const colorMode = useColorMode()
-if (colorMode.preference !== 'Dark' && colorMode.preference !== 'light') { colorMode.preference = 'light' }
+colorMode.unknown = 'SSR'
 </script>
 
 <style lang="scss">
@@ -72,15 +72,24 @@ if (colorMode.preference !== 'Dark' && colorMode.preference !== 'light') { color
     .article-directory {
       background-color: var(--color-dark-components-color);
     }
+    .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover{
+      background-color: var(--color-dark-background-color);
+    }
+    .el-dropdown-menu__item {
+      background-color: var(--color-dark-components-color);
+    }
+    .el-dropdown__popper.el-popper {
+      border-color: var(--color-dark-components-color);
+    }
+    .el-dropdown-menu__item:not(.is-disabled):focus {
+      background-color: var(--color-dark-background-color);
+    }
     // font
     .main-nav .el-menu--horizontal .el-menu-item {
       color: var(--color-dark-font-color);
     }
     .dark-mode body .main-nav .el-menu--horizontal .el-menu-item {
       color: var(--color-dark-font-color);
-    }
-    .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover{
-      background-color: var(--color-dark-background-color);
     }
     .main-header .container .main-nav .nav-list .right-side-nav .vip-entry .vip-title .vip-words {
       color: var(--color-dark-font-color);
@@ -237,7 +246,7 @@ if (colorMode.preference !== 'Dark' && colorMode.preference !== 'light') { color
     }
   }
   .fixed-ThemeSwitch {
-    position: absolute;
+    position: fixed;
     bottom: 80px;
     right: 20px;
     width: 50px;
