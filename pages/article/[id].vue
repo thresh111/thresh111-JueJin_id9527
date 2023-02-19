@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div>
-      <el-main class="articleBody">
+      <el-main class="articleMainBody">
         <div class="main-article">
           <h1 class="article-title">
             {{ articles.title }}

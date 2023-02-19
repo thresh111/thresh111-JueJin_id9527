@@ -1,7 +1,7 @@
 @import '@/assets/style/main.scss';
 
-.articleBody {
-  min-width: none;
+.articleMainBody {
+  max-width: 800px;
   padding-left: 2.67rem;
   padding-right: 2.67rem;
   margin: 0 auto;
