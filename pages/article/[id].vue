@@ -74,7 +74,7 @@
               </div>
               <div class="message">
                 <a href="https://www.baidu.com" target="_blank" class="avatar-link">
-                  <el-button class="my_button">
+                  <el-button class="my_button" :dark="$colorMode.preference === 'dark'">
                     私信
                   </el-button>
                 </a>
@@ -98,7 +98,7 @@
             <el-divider />
             <div style="display: table;">
               <div v-for="(heading, i) in tocs" :key="i + ''" class="catalog-item" :style="{ padding: `10px 0 10px ${(Number(heading[1])-1) * 10}px` }">
-                <nuxt-link active-class exact-active-class style="font-size: 1.167rem; pointer; color: black; margin-left: 20px" :to="`#${heading[2]}`">
+                <nuxt-link class="catalogItem" active-class exact-active-class style="font-size: 1.167rem; pointer; margin-left: 20px" :to="`#${heading[2]}`">
                   {{ heading[3] }}
                 </nuxt-link>
               </div>
@@ -112,7 +112,7 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
-import 'github-markdown-css'
+import 'github-markdown-css/github-markdown.css'
 import './article.scss'
 import MarkdownItAnchor from 'markdown-it-anchor'
 export default {

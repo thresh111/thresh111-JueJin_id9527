@@ -7,7 +7,7 @@
     </div>
     <div v-for="(item,id) in releatedArticleList.data" :key="item.id" class="text item">
       <div v-if="id < 5">
-        <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" target="_blank">
+        <nuxt-link class="reAr" :to="{ path: '/article/' + item.attributes.uid }" target="_blank">
           <div class="item">
             {{ item.attributes.articleTitle }}
           </div>

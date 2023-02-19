@@ -1,6 +1,5 @@
 @import '@/assets/style/main.scss';
 
-
 .articleBody {
   min-width: none;
   padding-left: 2.67rem;
@@ -47,8 +46,8 @@
   max-width: 980px;
   margin: 0 auto;
   padding: 45px;
+  border-radius: 10px;
 }
-
 @media (max-width: 767px) {
   .markdown-body {
     padding: 15px;

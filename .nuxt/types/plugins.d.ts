@@ -16,7 +16,6 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/.pnpm/registry.npmmirror.com+@nuxt+devtools@0.1.2_nuxt@3.2.0/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client").default> &
   InjectionType<typeof import("../element-plus-teleports.plugin").default> &
   InjectionType<typeof import("../element-plus-injection.plugin").default> &
-  InjectionType<typeof import("../../plugins/rem").default> &
   InjectionType<typeof import("../../plugins/vue-dompurify-html").default>
 
 declare module '#app' {

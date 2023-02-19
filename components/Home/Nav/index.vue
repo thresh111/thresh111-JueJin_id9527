@@ -29,7 +29,7 @@ const navlist = await getNavList()
 @import '@/assets/style/main.scss';
 .view-nav {
   left: 0;
-  background-color: #fff;
+  // background-color: #fff;
   top: 5rem;
   width: 100%;
   height: 3.833rem;
@@ -64,7 +64,7 @@ const navlist = await getNavList()
       display: flex;
       flex-shrink: 0;
       font-size: 1.16rem;
-      color: #71777c;
+      // color: #71777c;
       padding: 0 1rem;
       .category-popover-box {
         position: relative;
