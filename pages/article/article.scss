@@ -1,0 +1,240 @@
+@import '@/assets/style/main.scss';
+
+.articleBody {
+  min-width: none;
+  padding-left: 2.67rem;
+  padding-right: 2.67rem;
+  margin: 0 auto;
+  left: -170px;
+  @include media-between-mini-and-normal-mobile {
+    left: 0;
+  }
+  @include media-mini-mobile {
+    padding-left: 0;
+    padding-right: 0;
+    left: 0;
+  }
+  @include media-ipad {
+    min-width: 800px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    left: 0;
+  }
+}
+.aside-author {
+  right: 0;
+  @include media-between-mini-and-normal-mobile {
+    min-width: none;
+    display: none;
+  }
+  @include media-ipad {
+    display: none;
+  }
+  @include media-mini-mobile {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: none;
+    display: none;
+  }
+}
+.catalog-item {
+  text-align: left;
+}
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  border-radius: 10px;
+}
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+.readsum {
+  margin-left: 10px;
+}
+.goodOfRead {
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.zan.icon {
+    display: flex;
+}
+.article-title {
+    margin: 0 0 1.667rem;
+    font-size: 2.467rem;
+    font-weight: 550;
+    line-height: 1.31;
+    color: #252933;
+}
+
+.avatar-link {
+    text-decoration: none;
+    width: 20px;
+}
+
+.author-info-block {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.el-avatar {
+    margin-top: 4px;
+    height: 3.333rem;
+    width: 3.333rem;
+}
+
+.author-name {
+    /* display: flex; */
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #515767;
+    line-height: 2rem;
+    overflow: hidden;
+}
+
+.author-png {
+    display: flex;
+    margin-right: 0.1rem;
+    width: 3.333rem;
+    height: 3.333rem;
+    border-radius: 50%;
+}
+
+.level {
+    width: 35px;
+    height: 16px;
+}
+
+.author-identity {
+    margin-top: 4px;
+    font-size: 1rem;
+    color: #515767;
+    font-weight: 400;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-readsum {
+    margin-top: 4px;
+    font-size: 1rem;
+    color: #515767;
+    font-weight: 400;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subscribe {
+    margin: 0 0 0 auto;
+    padding: 0 1rem;
+    height: 34px;
+    font-size: 14px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.el-main {
+    position: relative;
+    padding-top: 2.667rem;
+    z-index: 1;
+    border: 1px solid hsla(0, 0%, 59.2%, 0.1%);
+    border-radius: 1px;
+    height: 100%;
+    max-width: 800px;
+    background-color: white;
+}
+
+.el-aside {
+    /* width: 400px; */
+    overflow: hidden;
+}
+
+.aside-author {
+    position: absolute;
+    top: 0px;
+    /* left: 50px; */
+    margin-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 25rem;
+    /* padding: 1.667rem; */
+    overflow: hidden;
+}
+
+.aside-size {
+    padding: 1.4rem;
+}
+
+.author-info {
+    display: block;
+    border-radius: 5px;
+    /* padding: 1.5rem; */
+    width: 300px;
+    background-color: white;
+    border: 1px solid hsla(0, 0%, 59.2%, 0.1%);
+    overflow: hidden;
+}
+
+.article-directory {
+    border-radius: 4px;
+    /* padding: 1.5rem; */
+    width: 300px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid hsla(0, 0%, 59.2%, 0.1%);
+}
+
+.button {
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    margin-right: 25px;
+    vertical-align: middle;
+}
+
+.my_button {
+    width: 100px;
+    height: 36px;
+    vertical-align: middle;
+    /* font-size: 14px;
+    border-radius: 4px; */
+}
+
+.el-container {
+    margin-top: 1.767rem;
+    position: relative;
+    padding: 0 0 8rem;
+}
+
+.directory {
+    text-align: left;
+}
+
+.main {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.content {
+    font-size: 1.1rem;
+    color: #252933;
+    font-weight: 400;
+    margin-left: 1rem;
+    line-height: 25px;
+}
+
+.icon {
+    vertical-align: middle;
+}

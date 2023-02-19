@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
     <div class="main">
         <div class="allBox">
@@ -63,3 +64,20 @@ a{
 }
 
 </style>
+=======
+<template>
+  <div class="contain">
+    <HomeNav />
+    <HomeListArticleListMenu />
+  </div>
+</template>
+
+<script setup>
+</script>
+
+<style lang="scss" scoped>
+.contain {
+  position: relative;
+}
+</style>
+>>>>>>> test

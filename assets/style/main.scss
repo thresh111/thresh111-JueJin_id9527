@@ -1,0 +1,148 @@
+ :root {
+   --color-dark-background-color: #0d1b2a;
+   --color-dark-font-color: #fff;
+   --color-light-background-color: #f4f5f5;
+   --color-dark-components-color: #1b263b;
+ }
+html {
+  font-size: 12px;
+}
+.contain {
+  scroll-behavior: smooth;
+  /* background-color: #f4f5f5; */
+  height: 110vh;
+}
+
+body {
+   scroll-behavior: smooth;
+}
+
+
+ /* ipad */
+ @mixin media-ipad {
+   @media screen and (min-width: 47.9375rem) and (max-width: 75rem) {
+     @content;
+      .main-nav-list .item{
+      display: none;
+     }
+      .HomeHeader {
+        display: none;
+      }
+      .mobile {
+        display: none;
+      }
+      .main-header .container .main-nav .nav-list .MenuMobile {
+        display: flex;
+      }
+      .rightBox {
+        display: none;
+      }
+      .listHeader {
+        width: 100%;
+      }
+      .aside-author {
+        min-width: 800px;
+        display: none;
+      }
+   }
+ }
+/* 移动端设备 */
+ @mixin media-mobile {
+   @media screen and (max-width: 47.9375rem) {
+     @content;
+     .main-nav-list .item{
+      display: none;
+     }
+     .HomeHeader {
+      display: flex;
+     }
+     .mobile {
+      display: none;
+     }
+     .main-header .container .main-nav .nav-list .MenuMobile {
+      display: none;
+     }
+     .articleBody {
+      left: 0;
+     }
+   }
+ }
+ /* 介于极小分辨率和正常分辨率之间的移动端设备 */
+ @mixin media-between-mini-and-normal-mobile {
+   @media screen and (min-width: 25.876rem) and (max-width: 47.9375rem) {
+     @content;
+     .main-nav-list .item{
+      display: none;
+     }
+      .HomeHeader {
+        display: none;
+      }
+      .main-header .container .main-nav .nav-list .MenuMobile {
+        display: flex;
+      }
+      .rightBox {
+        display: none;
+      }
+      .view-nav .nav-list {
+        overflow-x: scroll;
+      }
+      .listHeader {
+        width: 100%;
+      }
+      .aside-author {
+        display: none;
+      }
+     .articleBody {
+        left: 0;
+     }
+   }
+ }
+
+  /* 极小分辨率移动端设备 */
+ @mixin media-mini-mobile {
+   @media screen and (max-width: 25.875rem) {
+     @content;
+     .main-nav-list .item{
+      display: none;
+     }
+     .logo-img {
+      display: none;
+     }
+     .mobile {
+      display: block;
+     }
+     .creator-item {
+      display: none;
+     }
+     .vip-entry {
+      display: none;
+     }
+      .HomeHeader {
+        display: none;
+      }
+     .main-header .container .main-nav .nav-list .MenuMobile {
+      display: flex;
+     }
+     .rightBox {
+       display: none;
+     }
+     .view-nav .nav-list {
+       overflow-x: scroll;
+     }
+     .view-nav .nav-list .right {
+       display: none;
+     }
+     .listHeader {
+       width: 100%;
+     }
+     .aside-author {
+       display: none;
+     }
+     .articleBody {
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+      left: 0;
+     }
+   }
+ }
