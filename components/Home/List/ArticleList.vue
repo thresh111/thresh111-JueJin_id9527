@@ -98,7 +98,6 @@ export default defineComponent({
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  color: black;
   display:-webkit-box;
   margin-bottom: 8px;
   text-decoration: none;

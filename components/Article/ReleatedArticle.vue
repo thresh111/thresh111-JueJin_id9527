@@ -7,7 +7,7 @@
     </div>
     <div v-for="(item, id) in releatedArticleList.data" :key="item.id" class="text item">
       <div v-if="id < 5">
-        <nuxt-link :to="{ path: '/article/' + item.attributes.uid }" target="_blank">
+        <nuxt-link class="reAr" :to="{ path: '/article/' + item.attributes.uid }" target="_blank">
           <div class="item">
             {{ item.attributes.articleTitle }}
           </div>
@@ -17,7 +17,7 @@
   </div>
 </template>
 <script lang="ts" setup scoped>
-async function getReleatedArticleList() {
+async function getReleatedArticleList () {
   // const { data: Ad } = await useLazyFetch('/api/releatedArticleList')
   const { data: Ad } = await useAsyncData('releatedArticleList', () => $fetch('/api/releatedArticleList'))
   // if (Ad.value.data[0].attributes.show !== true) {
@@ -27,7 +27,6 @@ async function getReleatedArticleList() {
   //     type: 'error'
   //   })
   // }
-  console.log(Ad.value)
   return Ad.value
 }
 const releatedArticleList = await getReleatedArticleList()

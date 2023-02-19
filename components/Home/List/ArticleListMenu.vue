@@ -64,7 +64,6 @@ const articleListChange = await getArticleListTags()
   max-width: 960px;
   margin: 25px auto;
   height: 100%;
-  background-color: #f4f5f5;
 }
 
 .articleBody {
@@ -87,7 +86,6 @@ const articleListChange = await getArticleListTags()
 }
 
 .el-menu-item {
-  color: #909090;
   line-height: normal;
   align-content: center;
   padding: 1.5rem 1.6rem;

@@ -96,7 +96,7 @@ const Advertise = await getAdvertise()
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 12px;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .downLoad img {

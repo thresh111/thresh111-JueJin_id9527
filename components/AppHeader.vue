@@ -304,7 +304,6 @@ const headerList = await getHeaderList()
               display: flex;
               justify-content: flex-start;
               .search {
-                color: #86909c;
                 padding: 0 1rem;
                 font-size: 1.167rem;
                 margin: 0;
@@ -316,7 +315,7 @@ const headerList = await getHeaderList()
                 padding-left: 0;
                 .search-form {
                   width: auto;
-                  background-color: #fff;
+                  // background-color: #fff;
                   display: flex;
                   align-items: center;
                   justify-content: space-between;
@@ -331,7 +330,6 @@ const headerList = await getHeaderList()
                     box-shadow: none;
                     outline: none;
                     font-size: 1.1rem;
-                    color: #8a919f;
                     background-color: transparent;
                   }
                   .search-icon-container {
@@ -339,7 +337,6 @@ const headerList = await getHeaderList()
                     left: -2px;
                     width: 44px;
                     height: 30px;
-                    background: #f2f3f5;
                     border-radius: 2px;
                     .search-icon {
                       display: inline-block;
@@ -449,7 +446,7 @@ const headerList = await getHeaderList()
           .menu {
             position: relative;
             padding-left: 0;
-            background-color: #fff;
+            // background-color: #fff;
             .avatar-wrapper {
               margin-right: 2rem;
               .avatar {
