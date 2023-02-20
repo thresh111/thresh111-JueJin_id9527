@@ -39,7 +39,7 @@
         </nuxt-link>
         {{ item.attributes.Info }}
       </div>
-      <img v-if="item.attributes.imageUrl !== null" class="articleImg" :src="item.attributes.imageUrl">
+      <img v-if="item.attributes.imageUrl !== null" class="articleImg" :src="nuxtUrl + item.attributes.imageUrl">
     </div>
     <div v-if="item.attributes.top !== true" class="touristPanel">
       <a class="panelItem">
@@ -58,26 +58,18 @@
   </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  async setup () {
-    const articleInfoChangeIndex = ref('-1')
-    const articleInfoSelect = (key: string, keyPath: string[]) => {
-      console.log(key, keyPath)
-    }
-    async function getArticleList () {
-      const { data } = await useAsyncData('articleList', () => $fetch('/api/articleList'))
-      return data.value
-    }
-    const articleList = await getArticleList()
-    return {
-      articleInfoChangeIndex,
-      articleInfoSelect,
-      articleList
-    }
-  }
-})
-
+<script lang="ts" setup>
+const runtimeConfig = useRuntimeConfig()
+const articleInfoChangeIndex = ref('-1')
+const articleInfoSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+async function getArticleList () {
+  const { data } = await useAsyncData('articleList', () => $fetch('/api/articleList'))
+  return data.value
+}
+const articleList = await getArticleList()
+const nuxtUrl = runtimeConfig.public.apiBase
 </script>
 
 <style lang="less" scoped>

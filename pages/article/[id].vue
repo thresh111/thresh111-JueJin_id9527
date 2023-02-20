@@ -9,15 +9,15 @@
           <div class="author-info-block">
             <div class="author-png">
               <a href="https://www.baidu.com" target="_blank" class="avatar-link">
-                <el-avatar :src="articles.avatarImgUrl" />
+                <el-avatar :src="configBaseUrl + articles.avatarImgUrl" />
               </a>
             </div>
             <div class="author-name">
               <a href="https://www.baidu.com" target="_blank" class="avatar-link author-name">
                 <span style="max-width: 128px;">{{ articles.author }}</span>
                 <span>
-                  <img :src="articles.levelUrl" class="level">
-                  <img :src="articles.superLevelUrl">
+                  <img :src="configBaseUrl + articles.levelUrl" class="level">
+                  <img :src="configBaseUrl + articles.superLevelUrl">
                 </span>
               </a>
               <div class="time-readsum">
@@ -40,15 +40,15 @@
             <div class="author-info-block">
               <div class="author-png">
                 <a href="https://www.baidu.com" target="_blank" class="avatar-link">
-                  <el-avatar :src="articles.avatarImgUrl" />
+                  <el-avatar :src="configBaseUrl + articles.avatarImgUrl" />
                 </a>
               </div>
               <div class="author-name">
                 <a href="https://www.baidu.com" target="_blank" class="avatar-link author-name">
                   <span>{{ articles.author }}</span>
                   <span>
-                    <img :src="articles.levelUrl" class="level">
-                    <img :src="articles.superLevelUrl">
+                    <img :src="configBaseUrl + articles.levelUrl" class="level">
+                    <img :src="configBaseUrl + articles.superLevelUrl">
                   </span>
                 </a>
                 <div class="author-identity">
@@ -131,6 +131,8 @@ const md = new MarkdownIt()
 md.use(MarkdownItAnchor)
 export default {
   async setup () {
+    const runtimeConfig = useRuntimeConfig()
+    const configBaseUrl = runtimeConfig.public.apiBase
     async function markdown () {
       const route = useRoute()
       const { data: article } = await useLazyFetch('/api/articleList')
@@ -149,7 +151,7 @@ export default {
     }
     const tocs = toc.filter(line => line !== null)
     // return { result, tocs, articles }
-    return { result, tocs, articles }
+    return { result, tocs, articles, configBaseUrl }
   },
   //   async function markdown() {
   //     const route = useRoute()

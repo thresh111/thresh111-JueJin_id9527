@@ -3,24 +3,16 @@
     <div class="articleBody">
       <header class="listHeader">
         <client-only>
-          <el-menu
-            class="articleListMenu"
-            mode="horizontal"
-            :default-active="articleListChangeIndex"
-            :ellipsis="false"
-            @select="articleListSelect"
-          >
-            <div
-              v-for="(item, i) in articleListChange"
-              :key="item.sort"
-              index="{item.sort}"
-              style="padding: 0"
-            >
-              <el-menu-item>
-                {{ item.title }}
-              </el-menu-item>
-              <a v-if="i !== 2" class="rightLine" />
-            </div>
+          <el-menu class="articleListMenu" mode="horizontal" :ellipsis="false">
+            <el-menu-item>
+              推荐
+            </el-menu-item>
+            <el-menu-item>
+              最新
+            </el-menu-item>
+            <el-menu-item>
+              热门
+            </el-menu-item>
           </el-menu>
         </client-only>
         <el-main>
@@ -38,23 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-const articleListChangeIndex = ref('-1')
-const articleListSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-
-async function getArticleListTags () {
-  const { data } = await useAsyncData('articleListChange', () => $fetch('/api/articleListChange'))
-  if (data.value.data[0].attributes.show !== true) {
-    ElMessage({
-      showClose: true,
-      message: 'articleListTags 获取失败!',
-      type: 'error'
-    })
-  }
-  return data.value.data[0].attributes.articleListTags
-}
-const articleListChange = await getArticleListTags()
 </script>
 
 <style lang="scss" scoped>

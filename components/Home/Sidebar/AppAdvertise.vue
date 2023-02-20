@@ -3,7 +3,7 @@
     <div class="sidebar">
       <div class="banner">
         <a href="">
-          <img :src="Advertise.advertisedUrl" alt="" style="width:100%;">
+          <img :src="imgUrl" alt="" style="width:100%;">
         </a>
         <div class="close">
           <i> <svg
@@ -35,7 +35,7 @@
 </template>
 
 <script lang='ts' setup>
-
+const runtimeConfig = useRuntimeConfig()
 async function getAdvertise () {
   const { data } = await useAsyncData('advertiseImg', () => $fetch('/api/advertiseImg'))
   if (data.value.data[0].attributes.show !== true) {
@@ -48,6 +48,7 @@ async function getAdvertise () {
   return data.value.data[0].attributes
 }
 const Advertise = await getAdvertise()
+const imgUrl = runtimeConfig.public.apiBase + Advertise.advertisedUrl
 
 </script>
 
