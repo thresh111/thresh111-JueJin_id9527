@@ -10,6 +10,7 @@
 
 <style lang="scss" scoped>
 .contain {
+  width: 100%;
   position: relative;
 }
 </style>
