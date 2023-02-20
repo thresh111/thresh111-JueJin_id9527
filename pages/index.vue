@@ -9,7 +9,7 @@
 </script>
 
 <style lang="scss" scoped>
-.contain {
-  position: relative;
-}
+// .contain {
+//   position: relative;
+// }
 </style>
