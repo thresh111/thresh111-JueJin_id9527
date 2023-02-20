@@ -105,6 +105,8 @@ export default defineComponent({
   },
   watch: {
     'getdata' (newVal, oldVal) {
+      console.log(newVal)
+      console.log(oldVal)
       this.gettag()
     }
   },
