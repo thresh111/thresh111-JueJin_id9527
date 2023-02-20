@@ -21,7 +21,7 @@ import unstorage_47drivers_47fs from 'file://D:/%E6%96%B0%E5%BB%BA%E6%96%87%E4%B
 import defu from 'file://D:/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/test/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+defu@6.1.2/node_modules/defu/dist/defu.mjs';
 import { toRouteMatcher, createRouter } from 'file://D:/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/test/thresh111-JueJin_id9527/node_modules/.pnpm/registry.npmmirror.com+radix3@1.0.0/node_modules/radix3/dist/index.mjs';
 
-const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"apiBase":""}};
+const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"apiBase":"https//127.0.0.1:1337"}};
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _runtimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 const getEnv = (key) => {

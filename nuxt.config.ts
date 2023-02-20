@@ -1,7 +1,6 @@
 export default defineNuxtConfig({
   modules: [
     '@element-plus/nuxt',
-    'nuxt-purgecss',
     '@nuxt/devtools',
     '@nuxtjs/color-mode'
   ],
