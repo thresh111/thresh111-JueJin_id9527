@@ -16,7 +16,7 @@
               </el-menu-item>
               <a
                 class="rightLineSec"
-                :style="item.attributes.articleTags.tags.num === 0 ? 'border-right:none' : 'padding-left: 30px'"
+                :style="(item.attributes.articleTags.tags.num === 0 || item.attributes.articleTags.tags.num === null)? 'border-right:none' : 'padding-left: 30px'"
               />
             </div>
             <div v-for="(item1, i) in item.attributes.articleTags.tags.tag" :key="item1">

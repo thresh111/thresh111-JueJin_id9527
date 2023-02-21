@@ -127,8 +127,10 @@ import MarkdownIt from 'markdown-it'
 import 'github-markdown-css/github-markdown.css'
 import './article.scss'
 import MarkdownItAnchor from 'markdown-it-anchor'
+import uslug from 'uslug'
+const uslugify = s => uslug(s)
 const md = new MarkdownIt()
-md.use(MarkdownItAnchor)
+md.use(MarkdownItAnchor, { slugify: uslugify })
 export default {
   async setup () {
     const runtimeConfig = useRuntimeConfig()
