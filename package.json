@@ -23,6 +23,7 @@
     "markdown-it-anchor": "^8.6.6",
     "sass": "^1.58.0",
     "tocbot": "^4.20.1",
+    "uslug": "^1.0.4",
     "vue-dompurify-html": "^3.1.2"
   },
   "devDependencies": {

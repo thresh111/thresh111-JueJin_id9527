@@ -3,29 +3,22 @@
     <div class="articleBody">
       <header class="listHeader">
         <client-only>
-          <el-menu
-            class="articleListMenu"
-            mode="horizontal"
-            :default-active="articleListChangeIndex"
-            :ellipsis="false"
-            @select="articleListSelect"
-          >
-            <div
-              v-for="(item, i) in articleListChange"
-              :key="item.sort"
-              index="{item.sort}"
-              style="padding: 0"
-            >
-              <el-menu-item>
-                {{ item.title }}
-              </el-menu-item>
-              <a v-if="i !== 2" class="rightLine" />
-            </div>
+          <el-menu class="articleListMenu" mode="horizontal" :ellipsis="false">
+            <!-- <el-menu-item @click="tuiian">推荐</el-menu-item> -->
+            <el-menu-item @click="tuijian">
+              推荐
+            </el-menu-item>
+            <el-menu-item @click="neww">
+              最新
+            </el-menu-item>
+            <el-menu-item @click="hot">
+              热门
+            </el-menu-item>
           </el-menu>
         </client-only>
         <el-main>
           <div style="float: left;">
-            <HomeListArticleList />
+            <HomeListArticleList :getdata="tag" />
           </div>
         </el-main>
       </header>
@@ -37,28 +30,33 @@
   </main>
 </template>
 
-<script lang="ts" setup>
-const articleListChangeIndex = ref('-1')
-const articleListSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-
-async function getArticleListTags () {
-  const { data } = await useAsyncData('articleListChange', () => $fetch('/api/articleListChange'))
-  if (data.value.data[0].attributes.show !== true) {
-    ElMessage({
-      showClose: true,
-      message: 'articleListTags 获取失败!',
-      type: 'error'
-    })
+<script>
+// import AL from '@/components/Home/List/ArticleList.js'
+export default {
+  data () {
+    return {
+      tag: 1
+    }
+  },
+  methods: {
+    tuijian () {
+      this.tag = 1
+      // console.log(this.tag)
+    },
+    neww () {
+      this.tag = 3
+      // console.log(this.tag)
+    },
+    hot () {
+      this.tag = 4
+      // console.log(this.tag)
+    }
   }
-  return data.value.data[0].attributes.articleListTags
 }
-const articleListChange = await getArticleListTags()
 </script>
-
 <style lang="scss" scoped>
 @import '@/assets/style/main.scss';
+
 .homeBody {
   position: relative;
   max-width: 960px;
@@ -74,12 +72,15 @@ const articleListChange = await getArticleListTags()
 .listHeader {
   border: 1px solid hsla(0, 0%, 59.2%, 0.1%);
   width: 58rem;
+
   @include media-ipad {
     width: 100%;
   }
+
   @include media-between-mini-and-normal-mobile {
     width: 100%;
   }
+
   @include media-mini-mobile {
     width: 100%;
   }
@@ -102,9 +103,10 @@ const articleListChange = await getArticleListTags()
   background-color: white;
 }
 
-.el-menu--horizontal > .el-menu-item.is-active {
+.el-menu--horizontal>.el-menu-item.is-active {
   border-bottom: none;
 }
+
 .rightLine {
   height: 16px;
   position: absolute;
@@ -119,16 +121,20 @@ const articleListChange = await getArticleListTags()
   top: 0;
   right: -0.5rem;
   z-index: 1;
+
   @include media-ipad {
     display: none;
   }
+
   @include media-mini-mobile {
     display: none;
   }
+
   @include media-between-mini-and-normal-mobile {
     display: none;
   }
 }
+
 .el-main {
   background-color: white;
   padding: 0;

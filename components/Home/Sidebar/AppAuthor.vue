@@ -5,11 +5,11 @@
       <div class="user-list">
         <div v-for="(item, id) in authorList.data" :key="item.attributes.id" class="items">
           <div v-if="id < 3" href="" class="link">
-            <img :src="item.attributes.authorImgUrl" alt="" class="head">
+            <img :src="nuxtUrl + item.attributes.authorImgUrl" alt="" class="head">
             <div class="user-info">
               <a href="" class="username">
                 <span class="name">{{ item.attributes.authorName }}</span>
-                <span class="rank"><img :src="item.attributes.authorLevelUrl" alt="" class="userlevel"></span></a>
+                <span class="rank"><img :src="nuxtUrl + item.attributes.authorLevelUrl" alt="" class="userlevel"></span></a>
               <div class="position">
                 {{ item.attributes.authorInfo }}
               </div>
@@ -35,6 +35,7 @@
 </template>
 
 <script lang='ts' setup>
+const runtimeConfig = useRuntimeConfig()
 async function getAuthorList () {
   const { data } = await useAsyncData('authorList', () => $fetch('/api/authorList'))
   if (data.value.data[0].attributes.show !== true) {
@@ -47,7 +48,7 @@ async function getAuthorList () {
   return data.value
 }
 const authorList = await getAuthorList()
-
+const nuxtUrl = runtimeConfig.public.apiBase
 </script>
 
 <style scoped>
